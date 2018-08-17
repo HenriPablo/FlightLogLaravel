@@ -34,4 +34,9 @@ class AircraftCategoryController extends Controller
             ->with('aircraftCategories', $aircraftCategories);
     }
 
+
+
+    public function destroy($id)
+    {}
+
 }
