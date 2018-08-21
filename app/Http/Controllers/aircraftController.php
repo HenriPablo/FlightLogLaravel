@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateaircraftRequest;
 use App\Http\Requests\UpdateaircraftRequest;
+use App\Models\AircraftCategory;
 use App\Repositories\aircraftRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
@@ -104,7 +105,14 @@ class aircraftController extends Controller
             return redirect(route('aircrafts.index'));
         }
 
-        return view('aircrafts.edit')->with('aircraft', $aircraft);
+        $c = AircraftCategory::pluck('category', 'id');
+
+        var_dump( $c  );
+        var_dump("\n\n\n\n");
+        var_dump( $c['51']);
+        //die();
+
+        return view('aircrafts.edit')->with('aircraft', $aircraft)->with('categories', $c );
     }
 
     /**
