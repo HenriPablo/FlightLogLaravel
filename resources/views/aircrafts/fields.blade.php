@@ -6,12 +6,12 @@
 
     {!! var_dump('categories')     !!}
 
-    {{--<select class="js-states browser-default select2" name="shopping_id" required id="shopping_id">--}}
-        {{--<option value="option_select" disabled selected>Shoppings</option>--}}
-        {{--@foreach('aircraft_category' as $category)--}}
-            {{--<option value="{{ $category->id }}" {{$category->category == $aircraft_category->id  ? 'selected' : ''}}>{{ $category->$category}}</option>--}}
-        {{--@endforeach--}}
-    {{--</select>--}}
+    <select class="js-states browser-default select2" name="shopping_id" required id="shopping_id">
+        <option value="option_select" disabled selected>Shoppings</option>
+        @foreach('categories' as $category)
+            <option value="{{ $category->id }}" {{$category->category == $aircraft_category->id  ? 'selected' : ''}}>{{ $category->$category}}</option>
+        @endforeach
+    </select>
 </div>
 
 <!-- Aircraft Class Field -->
