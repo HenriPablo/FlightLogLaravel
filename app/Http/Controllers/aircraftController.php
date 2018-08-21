@@ -105,7 +105,7 @@ class aircraftController extends Controller
             return redirect(route('aircrafts.index'));
         }
 
-        $c = AircraftCategory::pluck('category', 'id');
+        $c = AircraftCategory::pluck('category', 'id')->toArray();
 
         var_dump( $c  );
         var_dump("\n\n\n\n");
