@@ -107,11 +107,6 @@ class aircraftController extends Controller
 
         $c = AircraftCategory::pluck('category', 'id')->toArray();
 
-        var_dump( $c  );
-        var_dump("\n\n\n\n");
-        var_dump( $c['51']);
-        //die();
-
         return view('aircrafts.edit')->with('aircraft', $aircraft)->with('categories', $c );
     }
 

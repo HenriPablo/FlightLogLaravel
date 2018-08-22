@@ -1,15 +1,15 @@
 <!-- Aircraft Category Field -->
+{{--<div class="form-group col-sm-6">--}}
+    {{--{!! Form::label('aircraft_category', 'Aircraft Category:') !!}--}}
+    {{--{!! Form::number('aircraft_category', null, ['class' => 'form-control']) !!}--}}
+{{--</div>--}}
+
 <div class="form-group col-sm-6">
-    {!! Form::label('aircraft_category', 'Aircraft Category:') !!}
-    {!! Form::number('aircraft_category', null, ['class' => 'form-control']) !!}
-
-
-    {!! var_dump('categories')     !!}
-
-    <select class="js-states browser-default select2" name="shopping_id" required id="shopping_id">
-        <option value="option_select" disabled selected>Shoppings</option>
-        @foreach('categories' as $category)
-            <option value="{{ $category->id }}" {{$category->category == $aircraft_category->id  ? 'selected' : ''}}>{{ $category->$category}}</option>
+    <label for="aircraft_category">Aircraft Category:</label>
+    <select class="form-control" name="aircraft_category" required id="aircraft_category">
+        <option value="option_select" disabled>Aircraft Categories</option>
+        @foreach( $categories as $id => $category)
+            <option value="{{ $id }}" {{ $aircraft->aircraft_category  == $id  ? 'selected' : ''}}>{{ $category}}</option>
         @endforeach
     </select>
 </div>
