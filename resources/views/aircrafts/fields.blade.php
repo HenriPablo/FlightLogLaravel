@@ -20,6 +20,18 @@
     {!! Form::number('aircraft_class', null, ['class' => 'form-control']) !!}
 </div>
 
+
+<div class="form-group col-sm-6">
+    <label for="aircraft_category">Aircraft Clas:</label>
+    <select class="form-control" name="aircraft_class" required id="aircraft_class">
+        <option value="option_select" disabled>Aircraft Categories</option>
+        @foreach( $classes as $id => $cls)
+            <option value="{{ $id }}" {{ $aircraft->aircraft_class  == $id  ? 'selected' : ''}}>{{ $cls}}</option>
+        @endforeach
+    </select>
+</div>
+
+
 <!-- Aircraft Tail Number Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('aircraft_tail_number', 'Aircraft Tail Number:') !!}

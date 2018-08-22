@@ -106,8 +106,12 @@ class aircraftController extends Controller
         }
 
         $c = AircraftCategory::pluck('category', 'id')->toArray();
+        $aircraftClasses = AircraftClass::pluck('class','id')->toArray();
 
-        return view('aircrafts.edit')->with('aircraft', $aircraft)->with('categories', $c );
+        return view('aircrafts.edit')
+            ->with('aircraft', $aircraft)
+            ->with('categories', $c )
+            ->with('classes', $aircraftClasses);
     }
 
     /**
