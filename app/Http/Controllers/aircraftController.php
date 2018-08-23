@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateaircraftRequest;
 use App\Http\Requests\UpdateaircraftRequest;
 use App\Models\AircraftCategory;
+use App\Models\AircraftClass;
 use App\Repositories\aircraftRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;

@@ -15,14 +15,14 @@
 </div>
 
 <!-- Aircraft Class Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('aircraft_class', 'Aircraft Class:') !!}
-    {!! Form::number('aircraft_class', null, ['class' => 'form-control']) !!}
-</div>
+{{--<div class="form-group col-sm-6">--}}
+    {{--{!! Form::label('aircraft_class', 'Aircraft Class:') !!}--}}
+    {{--{!! Form::number('aircraft_class', null, ['class' => 'form-control']) !!}--}}
+{{--</div>--}}
 
 
 <div class="form-group col-sm-6">
-    <label for="aircraft_category">Aircraft Clas:</label>
+    <label for="aircraft_category">Aircraft Class:</label>
     <select class="form-control" name="aircraft_class" required id="aircraft_class">
         <option value="option_select" disabled>Aircraft Categories</option>
         @foreach( $classes as $id => $cls)
