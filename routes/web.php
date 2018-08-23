@@ -23,3 +23,5 @@ Route::get('/home', 'HomeController@index');
 Route::resource('aircrafts', 'aircraftController');
 
 Route::resource('aircraft_category', 'AircraftCategoryController');
+
+Route::resource('aircraft_class', 'AircraftClassController');

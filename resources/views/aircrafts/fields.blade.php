@@ -1,9 +1,3 @@
-<!-- Aircraft Category Field -->
-{{--<div class="form-group col-sm-6">--}}
-    {{--{!! Form::label('aircraft_category', 'Aircraft Category:') !!}--}}
-    {{--{!! Form::number('aircraft_category', null, ['class' => 'form-control']) !!}--}}
-{{--</div>--}}
-
 <div class="form-group col-sm-6">
     <label for="aircraft_category">Aircraft Category:</label>
     <select class="form-control" name="aircraft_category" required id="aircraft_category">
@@ -13,13 +7,6 @@
         @endforeach
     </select>
 </div>
-
-<!-- Aircraft Class Field -->
-{{--<div class="form-group col-sm-6">--}}
-    {{--{!! Form::label('aircraft_class', 'Aircraft Class:') !!}--}}
-    {{--{!! Form::number('aircraft_class', null, ['class' => 'form-control']) !!}--}}
-{{--</div>--}}
-
 
 <div class="form-group col-sm-6">
     <label for="aircraft_category">Aircraft Class:</label>
