@@ -11,15 +11,15 @@ use Eloquent as Model;
 
 class AircraftClass extends Model
 {
-public $table = 'aircraft_class';
-public $timestamps = false;
+    public $table = 'aircraft_class';
+    public $timestamps = false;
 
-public $fillable = [ 'class' ];
+    public $fillable = [ 'class' ];
 
-protected  $casts = [
-  'class' => 'string'
-];
+    protected  $casts = [
+      'class' => 'string'
+    ];
 
-public static  $rules =[];
+    public static  $rules =[];
 
 }
