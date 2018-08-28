@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Aircraft Class
+            Crewmember Type
         </h1>
     </section>
     <div class="content">
@@ -12,9 +12,9 @@
 
             <div class="box-body">
                 <div class="row">
-                    {!! Form::open(['route' => 'aircraft_class.store']) !!}
+                    {!! Form::open(['route' => 'crewmember_type.store']) !!}
 
-                        @include('aircraft_class.fields')
+                        @include('crewmember_type.fields')
 
                     {!! Form::close() !!}
                 </div>
