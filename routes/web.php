@@ -25,3 +25,5 @@ Route::resource('aircrafts', 'aircraftController');
 Route::resource('aircraft_category', 'AircraftCategoryController');
 
 Route::resource('aircraft_class', 'AircraftClassController');
+
+Route::resource('crewmember_type', 'CrewmemberType');
