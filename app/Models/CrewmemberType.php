@@ -12,7 +12,7 @@ use Eloquent as Model;
 class CrewmemberType extends Model
 {
     public $table = 'crewmembertype';
-    public $timestamps = fasle;
+    public $timestamps = false;
     public $fillable = ['role'];
     protected $casts = [
         'role' =>'string'

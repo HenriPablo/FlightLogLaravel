@@ -16,23 +16,23 @@ use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 
 
-class CrewmemberTypeController extends Controller
+class CrewmemberController extends Controller
 {
 
     /** @var CrewmemberTypeRepository  */
-    private $crewmemberTypeRepository;
+    private $crewmemberRepository;
 
-    public function __construct( CrewmemberTypeRepository $crewmemberTypeRepository)
+    public function __construct( CrewmemberRepository $crewmemberRepository)
     {
-        $this->crewmemberTypeRepository = $crewmemberTypeRepository;
+        $this->crewmemberRepository = $crewmemberRepository;
     }
 
     public function index( Request $request)
     {
-        $this->crewmemberTypeRepository->pushCriteria( new RequestCriteria($request));
-        $crememberTypes = $this->crewmemberTypeRepository->all();
-        return view( 'crewmember_type.index')
-            ->with('crewmemberTypes', $crememberTypes);
+        $this->crewmemberRepository->pushCriteria( new RequestCriteria($request));
+        $cremember = $this->crewmemberRepository->all();
+        return view( 'crewmember.index')
+            ->with('crewmember', $cremember);
     }
 
     public function create()
