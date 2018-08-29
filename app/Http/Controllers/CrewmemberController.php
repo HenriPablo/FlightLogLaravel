@@ -7,9 +7,9 @@
  */
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CreateCrewmemberTypeRequest;
-use App\Http\Requests\UpdateCrewmemberTypeRequest;
-use App\Repositories\CrewmemberTypeRepository;
+use App\Http\Requests\CreateCrewmemberRequest;
+use App\Http\Requests\UpdateCrewmemberRequest;
+use App\Repositories\CrewmemberRepository;
 use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
@@ -19,7 +19,7 @@ use Response;
 class CrewmemberController extends Controller
 {
 
-    /** @var CrewmemberTypeRepository  */
+    /** @var CrewmemberRepository  */
     private $crewmemberRepository;
 
     public function __construct( CrewmemberRepository $crewmemberRepository)
@@ -37,80 +37,80 @@ class CrewmemberController extends Controller
 
     public function create()
     {
-        return view('crewmember_type.create');
+        return view('crewmember.create');
     }
 
-    public function store(CreateCrewmemberTypeRequest $request)
+    public function store(CreateCrewmemberRequest $request)
     {
 
         $input = $request->all();
 
-        $crewmemberType = $this->crewmemberTypeRepository->create($input);
+        $crewmember = $this->crewmemberRepository->create($input);
 
-        Flash::success('Crewmember Type saved successfully.');
+        Flash::success('Crewmember saved successfully.');
 
-        return redirect(route('crewmember_type.index'));
+        return redirect(route('crewmember.index'));
 
     }
 
     public function show($id)
     {
-        $crewmemberType = $this->crewmemberTypeRepository->findWithoutFail($id);
+        $crewmember = $this->crewmemberRepository->findWithoutFail($id);
 
-        if (empty($crewmemberType)) {
-            Flash::error('Crewmember Type not found');
+        if (empty($crewmember)) {
+            Flash::error('Crewmember not found');
 
-            return redirect(route('crewmember_type.index'));
+            return redirect(route('crewmember.index'));
         }
 
-        return view('crewmember_type.show')->with('crewmemberType', $crewmemberType);
+        return view('crewmember.show')->with('crewmember', $crewmember);
     }
 
     public function edit($id)
     {
-        $crewmemberType = $this->crewmemberTypeRepository->findWithoutFail($id);
+        $crewmember = $this->crewmemberRepository->findWithoutFail($id);
 
-        if (empty($crewmemberType)) {
-            Flash::error('Crewmember Type not found');
+        if (empty($crewmember)) {
+            Flash::error('Crewmember not found');
 
-            return redirect(route('crewmember_type.index'));
+            return redirect(route('crewmember.index'));
         }
 
-        return view('crewmember_type.edit')->with('crewmemberType', $crewmemberType);
+        return view('crewmember.edit')->with('crewmember', $crewmember);
     }
 
-    public function update($id, UpdateCrewmemberTypeRequest $request)
+    public function update($id, UpdateCrewmemberRequest $request)
     {
-        $crewmemberType = $this->crewmemberTypeRepository->findWithoutFail($id);
+        $crewmember = $this->crewmemberRepository->findWithoutFail($id);
 
-        if (empty($crewmemberType)) {
-            Flash::error('Crewmember Type not found');
+        if (empty($crewmember)) {
+            Flash::error('Crewmember not found');
 
-            return redirect(route('crewmember_type.index'));
+            return redirect(route('crewmember.index'));
         }
 
-        $crewmemberType = $this->crewmemberTypeRepository->update($request->all(), $id);
+        $crewmember = $this->crewmemberRepository->update($request->all(), $id);
 
-        Flash::success('Crewmember Type updated successfully.');
+        Flash::success('Crewmember updated successfully.');
 
-        return redirect(route('crewmember_type.index'));
+        return redirect(route('crewmember.index'));
     }
 
     public function destroy($id)
     {
-        $crewmemberType = $this->crewmemberTypeRepository->findWithoutFail($id);
+        $crewmember = $this->crewmemberRepository->findWithoutFail($id);
 
-        if (empty($crewmemberType)) {
-            Flash::error('Crewmember Type not found');
+        if (empty($crewmember)) {
+            Flash::error('Crewmember not found');
 
-            return redirect(route('crewmember_type.index'));
+            return redirect(route('crewmember.index'));
         }
 
-        $this->crewmemberTypeRepository->delete($id);
+        $this->crewmemberRepository->delete($id);
 
-        Flash::success('Crewmember Type deleted successfully.');
+        Flash::success('Crewmember deleted successfully.');
 
-        return redirect(route('crewmember_type.index'));
+        return redirect(route('crewmember.index'));
     }
 
 }

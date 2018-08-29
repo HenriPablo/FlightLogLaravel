@@ -1,13 +1,13 @@
 <!-- Id Field -->
 <div class="form-group">
     {!! Form::label('id', 'Id:') !!}
-    <p>{!! $crewmemberType->id !!}</p>
+    <p>{!! $crewmember->id !!}</p>
 </div>
 
-<!-- Crewmember Type Field -->
+<!-- Crewmember Field -->
 <div class="form-group">
     {!! Form::label('class', 'Class:') !!}
-    <p>{!! $crewmemberType->role !!}</p>
+    <p>{!! $crewmember->role !!}</p>
 </div>
 
 

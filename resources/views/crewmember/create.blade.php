@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Crewmember Type
+            Crewmember
         </h1>
     </section>
     <div class="content">
@@ -12,9 +12,9 @@
 
             <div class="box-body">
                 <div class="row">
-                    {!! Form::open(['route' => 'crewmember_type.store']) !!}
+                    {!! Form::open(['route' => 'crewmember.store']) !!}
 
-                        @include('crewmember_type.fields')
+                        @include('crewmember.fields')
 
                     {!! Form::close() !!}
                 </div>
