@@ -8,14 +8,14 @@
 
 namespace App\Repositories;
 
-use App\Models\CrewmemberType;
+use App\Models\Crewmember;
 use InfyOm\Generator\Common\BaseRepository;
 
-class CrewmemberTypeRepository extends BaseRepository
+class CrewmemberRepository extends BaseRepository
 {
 
     protected $fieldsSearchable = [
-        'crewmember_type'
+        'crewmember'
     ];
 
     /**
@@ -25,7 +25,6 @@ class CrewmemberTypeRepository extends BaseRepository
      */
     public function model()
     {
-        // TODO: Implement model() method.
-        return CrewmemberType::class;
+        return Crewmember::class;
     }
 }
