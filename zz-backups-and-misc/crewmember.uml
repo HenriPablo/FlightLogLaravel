@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>DATABASE</ID>
+  <OriginalElement>bd1dc843-c54f-4354-a778-5f28390ce9e9.TABLE:flight_log_v2.public.crewmember</OriginalElement>
+  <nodes>
+    <node x="0.0" y="0.0">bd1dc843-c54f-4354-a778-5f28390ce9e9.TABLE:flight_log_v2.public.crewmember</node>
+  </nodes>
+  <notes />
+  <edges />
+  <settings layout="Hierarchic Group" zoom="1.0" x="210.0" y="479.0" />
+  <SelectedNodes>
+    <node>bd1dc843-c54f-4354-a778-5f28390ce9e9.TABLE:flight_log_v2.public.crewmember</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Key columns</Category>
+    <Category>Columns</Category>
+  </Categories>
+</Diagram>
+
