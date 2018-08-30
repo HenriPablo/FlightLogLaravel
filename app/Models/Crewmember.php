@@ -14,6 +14,12 @@ class Crewmember extends Model
     public $table = 'crewmember';
     public $timestamps = false;
 
+
+    /** @var array deal with ONE to MANY CrewmemberTypes
+     *  https://laravel.com/docs/5.6/eloquent-relationships#one-to-many
+     */
+
+
     public $fillable = ['first_name'];
 
     protected $casts = [
