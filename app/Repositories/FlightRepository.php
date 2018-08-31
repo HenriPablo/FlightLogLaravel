@@ -8,10 +8,10 @@
 
 namespace App\Repositories;
 
-use App\Models\AircraftCategory;
+use App\Models\Flight;
 use InfyOm\Generator\Common\BaseRepository;
 
-class AircraftCategoryRepository extends BaseRepository
+class FlightRepository extends BaseRepository
 {
 
     protected $fieldsSearchable = [
@@ -26,6 +26,6 @@ class AircraftCategoryRepository extends BaseRepository
     public function model()
     {
         // TODO: Implement model() method.
-        return AircraftCategory::class;
+        return Flight::class;
     }
 }

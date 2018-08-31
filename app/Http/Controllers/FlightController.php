@@ -24,13 +24,13 @@ class FlightController extends Controller
 
     public function __construct( FlightRepository $flightRepository)
     {
-        $this->$flightRepository = $flightRepository;
+        $this->flightRepository = $flightRepository;
     }
 
     public function index( Request $request)
     {
-        $this->$flightRepository->pushCriteria( new RequestCriteria($request));
-        $flights = $this->$flightRepository->all();
+        $this->flightRepository->pushCriteria( new RequestCriteria($request));
+        $flights = $this->flightRepository->all();
         return view( 'flight.index')
             ->with('flights', $flights);
     }
