@@ -19,6 +19,25 @@ class Crewmember extends Model
      *  https://laravel.com/docs/5.6/eloquent-relationships#one-to-many
      */
 
+    /**  list of columns from crewmember table
+            id
+            address1
+            address2
+            phone
+            certificate_no
+            city
+            email
+            first_name
+            last_name
+            notes
+            state
+            zip
+            class
+            display_email
+            enabled
+            password
+            username
+     */
 
     public $fillable = ['first_name'];
 

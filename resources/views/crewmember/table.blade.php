@@ -8,7 +8,7 @@
     <tbody>
     @foreach($crewmember as $crw)
         <tr>
-            <td>{!! $crw->role !!}</td>
+            <td>{!! $crw->first_name !!}</td>
             <td>
                 {!! Form::open(['route' => ['crewmember.destroy', $crw->id], 'method' => 'delete']) !!}
                 <div class='btn-group'>
