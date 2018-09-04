@@ -18,4 +18,6 @@ class CrewmemberType extends Model
         'role' =>'string'
     ];
     public static $rules = [];
+
+
 }

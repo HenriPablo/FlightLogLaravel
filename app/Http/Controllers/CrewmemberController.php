@@ -9,6 +9,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateCrewmemberRequest;
 use App\Http\Requests\UpdateCrewmemberRequest;
+use App\Models\CrewmemberType;
 use App\Repositories\CrewmemberRepository;
 use Illuminate\Http\Request;
 use Flash;
@@ -76,7 +77,10 @@ class CrewmemberController extends Controller
             return redirect(route('crewmember.index'));
         }
 
-        return view('crewmember.edit')->with('crewmember', $crewmember);
+        $crewmemberType = CrewmemberType::pluck('role', 'id')->toArray();
+        return view('crewmember.edit')
+            ->with('crewmember', $crewmember)
+            ->with('crewmemberType', $crewmemberType);
     }
 
     public function update($id, UpdateCrewmemberRequest $request)

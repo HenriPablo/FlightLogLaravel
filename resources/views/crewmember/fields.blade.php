@@ -10,3 +10,10 @@
     {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
     <a href="{!! route('crewmember.index') !!}" class="btn btn-default">Cancel</a>
 </div>
+<hr style="display:block; clear:both;"/>
+<?php
+var_dump($crewmember->crewmemberTypes->toArray() );
+echo('<hr/>');
+var_dump($crewmemberType);
+?>
+

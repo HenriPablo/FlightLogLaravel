@@ -45,4 +45,8 @@ class Crewmember extends Model
         'first_name' =>'string'
     ];
     public static $rules = [];
+
+    public function crewmemberTypes(){
+        return $this->belongsToMany('App\Models\CrewmemberType', 'crewmember_crewmembertype_xref', 'crewmember_id', 'crewmembertype_id');
+    }
 }
