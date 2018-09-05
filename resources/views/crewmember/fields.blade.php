@@ -21,12 +21,6 @@ $crt = $crewmember->crewmemberTypes->toArray();
 <ol>
     @foreach( $crt as $t)
         <p>ID: {{$t['id']}} ROLE: {{$t['role']}}</p>
-        {{--@foreach( $t as $x=>$role)--}}
-            {{--<p>{{$x}}</p>--}}
-            {{--@foreach( $role as $z)--}}
-            {{--<li>{{$value}}</li>--}}
-                {{--@endforeach--}}
-            {{--@endforeach--}}
     @endforeach
 </ol>
 
@@ -43,3 +37,21 @@ var_dump($crewmemberType);
 </ul>
 
 
+
+<div class="form-group col-sm-6">
+    <label for="aircraft_category">Crewmember Roles:</label>
+    <select class="form-control" name="crewmember_type" required id="crewmember_type">
+        <option value="option_select" disabled>Crewmember Roles</option>
+        @foreach( $crewmemberType as $id=>$role )
+
+            @foreach( $crt as $t)
+                @if( $t['id'] == $id )
+                <option value="{{ $t['id'] }}" selected >{{ $role}}</option>
+                @else
+                    <option value="{{ $t['id'] }}" >{{ $role}}</option>
+                @endif
+            @endforeach
+
+        @endforeach
+    </select>
+</div>
