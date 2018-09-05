@@ -40,7 +40,7 @@ var_dump($crewmemberType);
 
 <div class="form-group col-sm-6">
     <label for="aircraft_category">Crewmember Roles:</label>
-    <select class="form-control" name="crewmember_type" required id="crewmember_type">
+    <select class="form-control" name="crewmember_type" multiple required id="crewmember_type">
         <option value="option_select" disabled>Crewmember Roles</option>
         @foreach( $crewmemberType as $id=>$role )
 
