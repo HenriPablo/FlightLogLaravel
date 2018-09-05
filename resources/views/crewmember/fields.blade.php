@@ -17,9 +17,16 @@ var_dump($crewmember->crewmemberTypes->toArray() );
 $crt = $crewmember->crewmemberTypes->toArray();
 ?>
 
+<h3>Crewmember Roles:</h3>
 <ol>
     @foreach( $crt as $t)
-        <li>{{$t}}</li>
+        <p>ID: {{$t['id']}} ROLE: {{$t['role']}}</p>
+        {{--@foreach( $t as $x=>$role)--}}
+            {{--<p>{{$x}}</p>--}}
+            {{--@foreach( $role as $z)--}}
+            {{--<li>{{$value}}</li>--}}
+                {{--@endforeach--}}
+            {{--@endforeach--}}
     @endforeach
 </ol>
 
@@ -28,9 +35,10 @@ $crt = $crewmember->crewmemberTypes->toArray();
 echo('<hr/>');
 var_dump($crewmemberType);
 ?>
+<h3>All Roles:</h3>
 <ul>
-    @foreach( $crewmemberType as $type=>$role)
-        <li>{{$role}}</li>
+    @foreach( $crewmemberType as $id=>$role)
+        <li>ID: {{$id}} ROLE: {{$role}}</li>
     @endforeach
 </ul>
 
