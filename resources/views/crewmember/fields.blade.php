@@ -39,9 +39,8 @@ var_dump($crewmemberType);
 <?php $selected = '';?>
 
 <div class="form-group col-sm-6">
-    <label for="aircraft_category">Crewmember Roles:</label>
+    <label for="crewmember_type">Crewmember Roles:</label>
     <select class="form-control" name="crewmember_type" multiple required id="crewmember_type">
-        <option value="option_select" disabled>Crewmember Roles</option>
         @foreach( $crewmemberType as $id=>$role )
             @foreach( $crt as $t)
                 @if( $t['id'] == $id )
