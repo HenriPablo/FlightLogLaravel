@@ -11,33 +11,23 @@
     <a href="{!! route('crewmember.index') !!}" class="btn btn-default">Cancel</a>
 </div>
 
-<hr style="display:block; clear:both;"/>
 <?php
-var_dump($crewmember->crewmemberTypes->toArray() );
+//var_dump($crewmember->crewmemberTypes->toArray() );
 $crt = $crewmember->crewmemberTypes->toArray();
 ?>
-
-<h3>Crewmember Roles:</h3>
-<ol>
-    @foreach( $crt as $t)
-        <p>ID: {{$t['id']}} ROLE: {{$t['role']}}</p>
-    @endforeach
-</ol>
-
-
-<?php
-echo('<hr/>');
-var_dump($crewmemberType);
-?>
-<h3>All Roles:</h3>
-<ul>
-    @foreach( $crewmemberType as $id=>$role)
-        <li>ID: {{$id}} ROLE: {{$role}}</li>
-    @endforeach
-</ul>
-
+{{--<h3>Crewmember Roles:</h3>--}}
+{{--<ol>--}}
+    {{--@foreach( $crt as $t)--}}
+        {{--<p>ID: {{$t['id']}} ROLE: {{$t['role']}}</p>--}}
+    {{--@endforeach--}}
+{{--</ol>--}}
+{{--var_dump($crewmemberType);--}}
+{{--<ul>--}}
+    {{--@foreach( $crewmemberType as $id=>$role)--}}
+        {{--<li>ID: {{$id}} ROLE: {{$role}}</li>--}}
+    {{--@endforeach--}}
+{{--</ul>--}}
 <?php $selected = '';?>
-
 <div class="form-group col-sm-6">
     <label for="crewmember_type">Crewmember Roles:</label>
     <select class="form-control" name="crewmember_type" multiple required id="crewmember_type">
