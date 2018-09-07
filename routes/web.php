@@ -31,3 +31,5 @@ Route::resource('crewmember_type', 'CrewmemberTypeController');
 Route::resource('crewmember', 'CrewmemberController');
 
 Route::resource('flight', 'FlightController');
+
+Route::resource('airport', 'AirportController');

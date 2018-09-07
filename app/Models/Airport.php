@@ -19,4 +19,10 @@ class Airport extends Model
         ico_identifier
         name
      */
+    public $table = 'airport';
+    public $timestamps = false;
+    public $fillable = [
+        'ico_identifier'
+    ];
+    public static $rules = [];
 }
