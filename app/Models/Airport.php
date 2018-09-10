@@ -22,7 +22,8 @@ class Airport extends Model
     public $table = 'airport';
     public $timestamps = false;
     public $fillable = [
-        'ico_identifier'
+        'ico_identifier',
+        'name'
     ];
     public static $rules = [];
 }

@@ -1,12 +1,17 @@
 
-<!-- Aircraft Category Field -->
+<!-- Airport ICO Identifier -->
 <div class="form-group col-sm-6">
-    {!! Form::label('category', 'Aircraft Category:') !!}
-    {!! Form::text('category', null, ['class' => 'form-control']) !!}
+    {!! Form::label('ico_identifier', 'ICO Identifier:') !!}
+    {!! Form::text('ico_identifier', null, ['class' => 'form-control']) !!}
+</div>
+
+<div class="form-group col-sm-6">
+    {!! Form::label('name', 'Name:') !!}
+    {!! Form::text('name', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
     {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-    <a href="{!! route('aircraft_category.index') !!}" class="btn btn-default">Cancel</a>
+    <a href="{!! route('airport.index') !!}" class="btn btn-default">Cancel</a>
 </div>

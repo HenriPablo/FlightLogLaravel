@@ -7,9 +7,9 @@
  */
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CreateAirportTypeRequest;
-use App\Http\Requests\UpdateAirportTypeRequest;
-use App\Repositories\AirportTypeRepository;
+use App\Http\Requests\CreateAirportRequest;
+use App\Http\Requests\UpdateAirportRequest;
+use App\Repositories\AirportRepository;
 use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
@@ -20,97 +20,97 @@ class AirportController extends Controller
 {
 
     /** @var AirportRepository  */
-    private $crewmemberTypeRepository;
+    private $airportRepository;
 
-    public function __construct( CrewmemberTypeRepository $crewmemberTypeRepository)
+    public function __construct( AirportRepository $airportRepository)
     {
-        $this->crewmemberTypeRepository = $crewmemberTypeRepository;
+        $this->airportRepository = $airportRepository;
     }
 
     public function index( Request $request)
     {
-        $this->crewmemberTypeRepository->pushCriteria( new RequestCriteria($request));
-        $crememberTypes = $this->crewmemberTypeRepository->all();
-        return view( 'crewmember_type.index')
-            ->with('crewmemberTypes', $crememberTypes);
+        $this->airportRepository->pushCriteria( new RequestCriteria($request));
+        $airports = $this->airportRepository->all();
+        return view( 'airport.index')
+            ->with('airports', $airports);
     }
 
     public function create()
     {
-        return view('crewmember_type.create');
+        return view('airport.create');
     }
 
-    public function store(CreateCrewmemberTypeRequest $request)
+    public function store(CreateAirportRequest $request)
     {
 
         $input = $request->all();
 
-        $crewmemberType = $this->crewmemberTypeRepository->create($input);
+        $airport = $this->airportRepository->create($input);
 
-        Flash::success('Crewmember Type saved successfully.');
+        Flash::success('Airportsaved successfully.');
 
-        return redirect(route('crewmember_type.index'));
+        return redirect(route('airport.index'));
 
     }
 
     public function show($id)
     {
-        $crewmemberType = $this->crewmemberTypeRepository->findWithoutFail($id);
+        $airport = $this->airportRepository->findWithoutFail($id);
 
-        if (empty($crewmemberType)) {
-            Flash::error('Crewmember Type not found');
+        if (empty($airport)) {
+            Flash::error('Airport not found');
 
-            return redirect(route('crewmember_type.index'));
+            return redirect(route('airport.index'));
         }
 
-        return view('crewmember_type.show')->with('crewmemberType', $crewmemberType);
+        return view('airport.show')->with('airport', $airport);
     }
 
     public function edit($id)
     {
-        $crewmemberType = $this->crewmemberTypeRepository->findWithoutFail($id);
+        $airport = $this->airportRepository->findWithoutFail($id);
 
-        if (empty($crewmemberType)) {
-            Flash::error('Crewmember Type not found');
+        if (empty($airport)) {
+            Flash::error('Airport not found');
 
-            return redirect(route('crewmember_type.index'));
+            return redirect(route('airport.index'));
         }
 
-        return view('crewmember_type.edit')->with('crewmemberType', $crewmemberType);
+        return view('airport.edit')->with('airport', $airport);
     }
 
-    public function update($id, UpdateCrewmemberTypeRequest $request)
+    public function update($id, UpdateAirportRequest $request)
     {
-        $crewmemberType = $this->crewmemberTypeRepository->findWithoutFail($id);
+        $airport = $this->airportRepository->findWithoutFail($id);
 
-        if (empty($crewmemberType)) {
-            Flash::error('Crewmember Type not found');
+        if (empty($airport)) {
+            Flash::error('Airport not found');
 
-            return redirect(route('crewmember_type.index'));
+            return redirect(route('airport.index'));
         }
 
-        $crewmemberType = $this->crewmemberTypeRepository->update($request->all(), $id);
+        $airport = $this->airportRepository->update($request->all(), $id);
 
-        Flash::success('Crewmember Type updated successfully.');
+        Flash::success('Airport updated successfully.');
 
-        return redirect(route('crewmember_type.index'));
+        return redirect(route('airport.index'));
     }
 
     public function destroy($id)
     {
-        $crewmemberType = $this->crewmemberTypeRepository->findWithoutFail($id);
+        $airport = $this->airportRepository->findWithoutFail($id);
 
-        if (empty($crewmemberType)) {
-            Flash::error('Crewmember Type not found');
+        if (empty($airport)) {
+            Flash::error('Airport not found');
 
-            return redirect(route('crewmember_type.index'));
+            return redirect(route('airport.index'));
         }
 
-        $this->crewmemberTypeRepository->delete($id);
+        $this->airportRepository->delete($id);
 
-        Flash::success('Crewmember Type deleted successfully.');
+        Flash::success('Airport deleted successfully.');
 
-        return redirect(route('crewmember_type.index'));
+        return redirect(route('airport.index'));
     }
 
 }

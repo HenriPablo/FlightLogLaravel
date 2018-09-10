@@ -8,9 +8,9 @@
 
 namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
-use App\Models\AircraftClass;
+use App\Models\Airport;
 
-class UpdateAircraftClassRequest extends FormRequest
+class UpdateAirportRequest extends FormRequest
 {
     public function authorize()
     {
@@ -19,6 +19,6 @@ class UpdateAircraftClassRequest extends FormRequest
 
     public function rules()
     {
-        return AircraftClass::$rules;
+        return Airport::$rules;
     }
 }
