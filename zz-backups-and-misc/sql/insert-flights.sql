@@ -22,33 +22,9 @@ INSERT INTO flight
         pilot_in_command,
         second_in_command,
         total_duration_of_flight
-
-
-
-
     )
 values
-    (
-        '2002-08-11',
-        76, -- aircraft id
-        64,
-        64,
-        'kspg-kspg',
-        'some test remarks',
-        null,
-        0,
-        1,
-        0,
-        0,
-        0,
-        0.3,
-        0,
-        0,
-        0,
-        0,
-        0.3,
-        0,
-        0,
-        0.3
-    );
+    --('2002-08-11',76,64,64,'kspg-kspg','some test remarks',null,0,1,0,0,0,0.3,0,0,0,0,0.3,0,0,0.3),
+    ('2002-08-18',76,64,64,'kspg-kspg','more remarks about second flight',null,0,1,0,0,0,1.2,0,0,0,0,1.2,0,0,1.2),
+    ('2002-08-24',76,64,64,'kspg-kspg','again, remarks, probably did flight fundamentals',null,0,1,0,0,0,1.5,0,0,0,0,1.5,0,0,1.5);
 

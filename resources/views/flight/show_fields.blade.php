@@ -1,13 +1,13 @@
 <!-- Id Field -->
 <div class="form-group">
     {!! Form::label('id', 'Id:') !!}
-    <p>{!! $aircraft_category->id !!}</p>
+    <p>{!! $flight->id !!}</p>
 </div>
 
 <!-- Aircraft Category Field -->
 <div class="form-group">
-    {!! Form::label('category', 'Category:') !!}
-    <p>{!! $aircraft_category->category !!}</p>
+    {!! Form::label('airfcraft_id', 'Aircraft ID:') !!}
+    <p>{!! $flight->aircraft_id !!}</p>
 </div>
 
 
