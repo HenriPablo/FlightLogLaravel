@@ -47,7 +47,7 @@ class AirportController extends Controller
 
         $airport = $this->airportRepository->create($input);
 
-        Flash::success('Airportsaved successfully.');
+        Flash::success('Airport saved successfully.');
 
         return redirect(route('airport.index'));
 

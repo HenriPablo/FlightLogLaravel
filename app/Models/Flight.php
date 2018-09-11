@@ -62,4 +62,7 @@ class Flight extends Model
     ];
 
 
+    public function crewAssignments(){
+        return $this->belongsToMany('App\Models\Crewmember', 'crew_assignments', 'flight_id','crewmember_id', 'crewmembertype_id');
+    }
 }
