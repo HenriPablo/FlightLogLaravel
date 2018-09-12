@@ -19,6 +19,7 @@
     </div>
 
     <?php
-        var_dump( $flight->crewAssignments->toArray() );
+        var_dump( $flight->crew_assignment->toArray() );
+        //var_dump( $flight->crewAssignments->toArray() );
     ?>
 @endsection
