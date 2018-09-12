@@ -8,9 +8,12 @@
 
 namespace App\Models;
 use Eloquent as Model;
+use App\Models\CrewAssignment;
 
 class Flight extends Model
 {
+    public $table = 'flight';
+    public $timestamps = false;
     /**
      * list of columns from FLIGHT table
     id
@@ -49,20 +52,15 @@ class Flight extends Model
         'departure',
         'destination'
     ];
-    public $table = 'flight';
-
-    public $timestamps = false;
-
     protected $casts = [
         'departure'=>'string'
     ];
 
-    public static $rules = [
-
-    ];
+    public static $rules = [];
 
 
     public function crewAssignments(){
-        return $this->belongsToMany('App\Models\Crewmember', 'crew_assignments', 'flight_id','crewmember_id', 'crewmembertype_id');
+        return $this->belongsToMany('App\Models\CrewAssignment', 'crew_assignment')
+            ->withPivot( 'id', 'flight_id', 'crewmember_id', 'crewmembertype_id' ); /*, 'crewmember_id', 'crewmembertype_id'*/
     }
 }
