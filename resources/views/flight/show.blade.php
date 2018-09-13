@@ -19,7 +19,8 @@
     </div>
 
     <?php
-        var_dump( $flight->crew_assignment->toArray() );
+        var_dump( $crew_assignment );
         //var_dump( $flight->crewAssignments->toArray() );
     ?>
+    {{ $crew_assignment[0]->crewmember_id }}
 @endsection

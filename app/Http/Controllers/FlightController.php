@@ -66,12 +66,12 @@ class FlightController extends Controller
 
         $aircraft = aircraft::pluck('aircraft_tail_number', 'id')->toArray();
 
-        $crewAssignment = DB::table('crew_assignment')->where('flight_id', $id );
+        $crewAssignment = DB::table('crew_assignment')->where('flight_id', $id )->get();
 
         return view('flight.show')
             ->with('flight', $flight)
             ->with('aircraft', $aircraft)
-            ->with('crew_assignment', $crewAssignment)
+            ->with('crew_assignment', compact( $crewAssignment ))
             ;
     }
 
