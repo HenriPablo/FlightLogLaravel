@@ -15,6 +15,7 @@ use App\Models\aircraft;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use Illuminate\Support\Facades\DB;
 
 
 class FlightController extends Controller
@@ -68,10 +69,12 @@ class FlightController extends Controller
 
         $crewAssignment = DB::table('crew_assignment')->where('flight_id', $id )->get();
 
+        dump($crewAssignment);
+
         return view('flight.show')
             ->with('flight', $flight)
             ->with('aircraft', $aircraft)
-            ->with('crew_assignment', compact( $crewAssignment ))
+            ->with('crew_assignment',  $crewAssignment )
             ;
     }
 

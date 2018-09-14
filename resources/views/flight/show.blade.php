@@ -19,8 +19,9 @@
     </div>
 
     <?php
-        var_dump( $crew_assignment );
+        dump( $crew_assignment[0] );
         //var_dump( $flight->crewAssignments->toArray() );
     ?>
-    {{ $crew_assignment[0]->crewmember_id }}
+    {{--{{ $crew_assignment->$crewmember_id }}--}}
+
 @endsection
