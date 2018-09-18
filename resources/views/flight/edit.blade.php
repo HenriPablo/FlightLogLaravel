@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Aircraft Category
+            Flight
         </h1>
    </section>
    <div class="content">
@@ -11,9 +11,9 @@
        <div class="box box-primary">
            <div class="box-body">
                <div class="row">
-                   {!! Form::model($aircraft_category, ['route' => ['aircraft_category.update', $aircraft_category->id], 'method' => 'patch']) !!}
+                   {!! Form::model($flight, ['route' => ['flight.update', $flight->id], 'method' => 'patch']) !!}
 
-                        @include('aircraft_categories.fields')
+                        @include('flight.fields')
 
                    {!! Form::close() !!}
                </div>
