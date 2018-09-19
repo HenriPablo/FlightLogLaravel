@@ -14,3 +14,6 @@ require('./bootstrap');
  */
 
 require('./components/Example');
+
+/** figure out how to load this 'as needed' style */
+require('./components/CrewAssignment')
