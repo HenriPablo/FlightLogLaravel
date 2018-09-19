@@ -20,10 +20,7 @@ PRODUCTION
     <a href="{!! route('flight.index') !!}" class="btn btn-default">Cancel</a>
 </div>
 
-<div class="form-group col-sm-12">
-<h2>Crew Assignment</h2>
-
-</div>
+<div id="crew-assignment-wrapper" class="form-group col-sm-12"></div>
 
 <div id="example"></div>
 <script src="{{asset('js/app.js')}}"></script>
