@@ -13,7 +13,7 @@ require('./bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-require('./components/Example');
+//require('./components/Example');
 
 /** figure out how to load this 'as needed' style */
 require('./components/CrewAssignment')
