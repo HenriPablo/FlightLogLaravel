@@ -117,4 +117,11 @@ class CrewmemberController extends Controller
         return redirect(route('crewmember.index'));
     }
 
+    public function crewmembersAjax(Request $request){
+
+        $this->crewmemberRepository->pushCriteria( new RequestCriteria($request));
+        $cremembers = $this->crewmemberRepository->all();
+        return $cremembers->toJson();
+    }
+
 }
