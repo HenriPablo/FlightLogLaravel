@@ -119,9 +119,11 @@ class CrewmemberController extends Controller
 
     public function crewmembersAjax(Request $request){
 
+        //Request $request
+
         $this->crewmemberRepository->pushCriteria( new RequestCriteria($request));
-        $cremembers = $this->crewmemberRepository->all();
-        return $cremembers->toJson();
+        $crewmembers = $this->crewmemberRepository->all();
+        return $crewmembers->toJson();
     }
 
 }

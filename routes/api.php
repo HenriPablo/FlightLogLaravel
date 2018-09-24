@@ -18,3 +18,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('crewmembersAjax', "CrewmemberController@crewmembersAjax");
+
+//Route::get('/crewmembersAjax',function(Request $request){
+//    $task = Crewmember::create($request->all());
+//
+//    return Response::json($task);
+//});
