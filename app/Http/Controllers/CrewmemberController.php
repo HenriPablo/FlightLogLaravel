@@ -9,12 +9,14 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateCrewmemberRequest;
 use App\Http\Requests\UpdateCrewmemberRequest;
+use App\Models\Crewmember;
 use App\Models\CrewmemberType;
 use App\Repositories\CrewmemberRepository;
 use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use Illuminate\Support\Facades\DB;
 
 
 class CrewmemberController extends Controller
@@ -122,7 +124,9 @@ class CrewmemberController extends Controller
         //Request $request
 
         $this->crewmemberRepository->pushCriteria( new RequestCriteria($request));
-        $crewmembers = $this->crewmemberRepository->all();
+        $crewmembers = DB::table('crewmember')->select('id','first_name', 'last_name')->get();
+            //Crewmember::pluck('id', 'first_name', 'last_name');//->toArray();
+            //$this->crewmemberRepository->all();
         return $crewmembers->toJson();
     }
 
