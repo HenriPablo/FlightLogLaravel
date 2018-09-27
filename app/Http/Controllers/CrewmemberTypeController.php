@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use Illuminate\Support\Facades\DB;
 
 
 class CrewmemberTypeController extends Controller
@@ -111,6 +112,13 @@ class CrewmemberTypeController extends Controller
         Flash::success('Crewmember Type deleted successfully.');
 
         return redirect(route('crewmember_type.index'));
+    }
+
+    public function crewmemberTypeByIdAjax($id){
+
+        $crewmemberTypes = DB::table( 'crewmembertypes')->select('id','crewmembertype' )->get();
+        return $crewmemberTypes->toJson();
+
     }
 
 }

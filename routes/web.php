@@ -35,3 +35,7 @@ Route::resource('flight', 'FlightController');
 Route::resource('airport', 'AirportController');
 
 Route::get('crewmembersAjax', "CrewmemberController@crewmembersAjax");
+
+Route::get("crewmemberTypeByIdAjax","CrewmemberTypeController@crewmemberTypeByIdAjax");
+
+Route::get("crewmemberTypeByIdAjax/{id}","CrewmemberTypeController@crewmemberTypeByIdAjax");
