@@ -10,7 +10,7 @@ class CrewAssignment extends Component {
         super();
 
         this.state = {
-            /** TODO: replace with proper ajax call, get only names and ID!!!! */
+            /** TODO: replace with proper ajax call, get only names and ID!!!!
             crewmembers: [{ "id": 74, "first_name": "Tomasz", "last_name": "Brymora" }, {
                 "id": 89,
                 "first_name": "Cecily",
@@ -19,13 +19,20 @@ class CrewAssignment extends Component {
                 "id": 91,
                 "first_name": "Misa",
                 "last_name": "Miguchi"
-            }],
+            }],*/
+            crewmembers:[],
             currentCrewmember: null
         }
     }
 
     componentDidMount() {
-
+        fetch('/crewmembersAjax').then(
+            response => {
+                return response.json();
+            }
+        ).then( crewmembers => {
+            this.setState({crewmembers});
+        })
     }
 
     renderCrewmembers() {

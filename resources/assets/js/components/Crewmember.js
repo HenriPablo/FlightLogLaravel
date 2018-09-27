@@ -4,15 +4,18 @@ const Crewmember = ({ crewmember }) => {
 
     const divStyle = {
         /* some css code i guess? */
+        'background':'#efefef',
+        'padding':'0.5%',
+        'border-radius':'4px'
     }
 
     if (!crewmember) {
-        return (<div style={divStyle}> Crewmember does not exist </div>);
+        return (<div style={divStyle}> Select a crewmember</div>);
     }
 
     return (
         <div style={divStyle}>
-            <h2>{crewmember.first_name}</h2>
+            <p>{crewmember.id} {crewmember.first_name} {crewmember.last_name}</p>
         </div>
     );
 
