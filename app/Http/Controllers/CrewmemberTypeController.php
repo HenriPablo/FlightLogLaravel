@@ -9,6 +9,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateCrewmemberTypeRequest;
 use App\Http\Requests\UpdateCrewmemberTypeRequest;
+use App\Models\CrewmemberType;
 use App\Repositories\CrewmemberTypeRepository;
 use Illuminate\Http\Request;
 use Flash;
@@ -115,8 +116,20 @@ class CrewmemberTypeController extends Controller
     }
 
     public function crewmemberTypeByIdAjax($id){
+        //echo('<h1>' . $id . '</h1>');
+        //$crewmemberTypes = DB::table( 'crewmembertype')->select('id','crewmembertype' )->get();
+        DB::connection()->enableQueryLog();
+        //crewmember_crewmembertype_xref
+        $crewmemberTypes = DB::table( 'crewmembertype')
+            ->whereIn('id', function ($query){
+                $query->select('crewmember_id')
+                    ->from('crewmember_crewmembertype_xref')
+                    ->where('crewmember_id', '=', 89 );
+            } )->get();
 
-        $crewmemberTypes = DB::table( 'crewmembertypes')->select('id','crewmembertype' )->get();
+        $queries = DB::getQueryLog();
+        dump($queries);
+
         return $crewmemberTypes->toJson();
 
     }
