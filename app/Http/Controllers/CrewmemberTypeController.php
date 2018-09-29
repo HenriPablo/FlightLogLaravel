@@ -116,22 +116,16 @@ class CrewmemberTypeController extends Controller
     }
 
     public function crewmemberTypeByIdAjax($id){
-        //echo('<h1>' . $id . '</h1>');
-        //$crewmemberTypes = DB::table( 'crewmembertype')->select('id','crewmembertype' )->get();
-        DB::connection()->enableQueryLog();
-        //crewmember_crewmembertype_xref
-        $crewmemberTypes = DB::table( 'crewmembertype')
-            ->whereIn('id', function ($query){
-                $query->select('crewmember_id')
-                    ->from('crewmember_crewmembertype_xref')
-                    ->where('crewmember_id', '=', 89 );
-            } )->get();
-
-        $queries = DB::getQueryLog();
-        dump($queries);
-
-        return $crewmemberTypes->toJson();
-
+        /**  DB::connection()->enableQueryLog(); */
+        $crewmemberTypes  = DB::select(
+            'select ct.id, ct.role 
+                   from crewmembertype as ct
+                   left join crewmember_crewmembertype_xref as cct 
+                   on ct.id = cct.crewmembertype_id
+                   where  cct.crewmember_id = ?', [$id]
+                );
+        /** $queries = DB::getQueryLog();
+        dump($queries); */
+        return  json_encode( $crewmemberTypes );
     }
-
 }
