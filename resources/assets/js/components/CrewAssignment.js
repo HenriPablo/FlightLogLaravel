@@ -38,8 +38,8 @@ class CrewAssignment extends Component {
     renderCrewmembers() {
         return this.state.crewmembers.map(crewmember => {
             return (
-                <li onClick={
-                    () => this.handleClick(crewmember)} key={crewmember.id} > {crewmember.id} {crewmember.first_name} {crewmember.last_name}
+                <li onClick={ () => this.handleClick(crewmember)} key={crewmember.id} >
+                    {crewmember.id} {crewmember.first_name} {crewmember.last_name}
                 </li>
 
             );
@@ -48,6 +48,12 @@ class CrewAssignment extends Component {
 
     handleClick(crewmember) {
         this.setState({ currentCrewmember: crewmember });
+    }
+
+    handleButtonClick(){
+
+        alert('hi');
+
     }
 
 
@@ -59,11 +65,7 @@ class CrewAssignment extends Component {
                 <ul>
                     {this.renderCrewmembers()}
                 </ul>
-                <button
-
-                >
-                    Add Crew Member
-                </button>
+                <button type="button" onClick={ ()=> this.handleButtonClick() }>Add Crew Member</button>
 
                 <Crewmember crewmember={this.state.currentCrewmember} />
 
