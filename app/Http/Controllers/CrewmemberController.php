@@ -124,6 +124,12 @@ class CrewmemberController extends Controller
         //Request $request
 
         $this->crewmemberRepository->pushCriteria( new RequestCriteria($request));
+        /**
+         * select role IS as array:
+         *select first_name, ARRAY( select crewmembertype_id from crewmember_crewmembertype_xref where crewmember_crewmembertype_xref.crewmember_id = crewmember.id) as "role_ids" from crewmember
+         Call raw SQL: https://stackoverflow.com/questions/33049511/how-to-execute-raw-queries-with-laravel-5-1
+         Call Stored procedure: https://stackoverflow.com/questions/34497063/how-to-execute-stored-procedure-from-laravel
+         */
         $crewmembers = DB::table('crewmember')->select('id','first_name', 'last_name')->get();
             //Crewmember::pluck('id', 'first_name', 'last_name');//->toArray();
             //$this->crewmemberRepository->all();

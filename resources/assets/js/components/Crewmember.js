@@ -6,7 +6,7 @@ const Crewmember = ({ crewmember }) => {
         /* some css code i guess? */
         'background':'#efefef',
         'padding':'0.5%',
-        'border-radius':'4px'
+        'borderRadius':'4px'
     }
 
     if (!crewmember) {

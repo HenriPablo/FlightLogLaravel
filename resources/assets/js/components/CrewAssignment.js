@@ -31,6 +31,7 @@ class CrewAssignment extends Component {
                 return response.json();
             }
         ).then( crewmembers => {
+            console.log("crewmembersAjax: ", crewmembers)
             this.setState({crewmembers});
         })
     }
