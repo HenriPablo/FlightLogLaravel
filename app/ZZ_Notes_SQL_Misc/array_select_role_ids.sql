@@ -43,3 +43,19 @@ AS $$
 
     end;
 $$;
+
+create or replace function select_crew_members_with_roles()
+	returns SETOF record
+	as $$
+        select
+            crewmember.first_name,
+            crewmember.last_name,
+            ARRAY(
+                select crewmembertype_id
+                from crewmember_crewmembertype_xref
+                where crewmember_crewmembertype_xref.crewmember_id = crewmember.id
+                ) as "roles"
+        from
+            crewmember
+	$$
+	language sql
