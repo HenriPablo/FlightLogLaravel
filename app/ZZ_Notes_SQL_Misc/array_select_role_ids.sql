@@ -10,10 +10,8 @@ select first_name, ARRAY(
 
 
 CREATE OR REPLACE PROCEDURE select_crewmembers_with_roles()
-LANGUAGE plpgsql
 AS $$
     begin
-
         select
             first_name,
             last_name,
@@ -23,10 +21,9 @@ AS $$
                 where crewmember_crewmembertype_xref.crewmember_id = crewmember.id
                 ) as "roles"
         from
-            crewmember
-
-    end;
-$$;
+            crewmember;
+end $$
+LANGUAGE plpgsql;
 
 
 
