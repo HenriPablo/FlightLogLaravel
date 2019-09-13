@@ -115,6 +115,11 @@ class CrewmemberTypeController extends Controller
         return redirect(route('crewmember_type.index'));
     }
 
+    public function crewmemberTypesAjax(){
+        $crewmemberTypes  = DB::select('select ct.id, ct.role from crewmembertype as ct');
+        return  json_encode( $crewmemberTypes );
+    }
+
     public function crewmemberTypeByIdAjax($id){
         /**  DB::connection()->enableQueryLog(); */
         $crewmemberTypes  = DB::select(
