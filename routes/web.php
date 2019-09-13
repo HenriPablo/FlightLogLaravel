@@ -39,3 +39,5 @@ Route::get('crewmembersAjax', "CrewmemberController@crewmembersAjax");
 Route::get("crewmemberTypeByIdAjax","CrewmemberTypeController@crewmemberTypeByIdAjax");
 
 Route::get("crewmemberTypeByIdAjax/{id}","CrewmemberTypeController@crewmemberTypeByIdAjax");
+
+Route::get("crewmemberTypesAjax", "CrewmemberTypeController@crewmemberTypesAjax");
