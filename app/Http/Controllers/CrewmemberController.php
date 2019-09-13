@@ -131,11 +131,24 @@ class CrewmemberController extends Controller
          Call Stored procedure: https://stackoverflow.com/questions/34497063/how-to-execute-stored-procedure-from-laravel
          * DB::select('exec my_stored_procedure("Param1", "param2",..)');
          */
-        $crewmembers = DB::select("select select_crew_members_with_roles()"); //DB::table('crewmember')->select('id','first_name', 'last_name')->get();
-            //Crewmember::pluck('id', 'first_name', 'last_name');//->toArray();
+        //$crewmembers = DB::select("select select_crew_members_with_roles()"); //DB::table('crewmember')->select('id','first_name', 'last_name')->get();
+
+        $crewmembers = DB::select("
+           select
+                first_name,
+                last_name,
+                ARRAY(
+                    select crewmembertype_id
+                    from crewmember_crewmembertype_xref
+                    where crewmember_crewmembertype_xref.crewmember_id = crewmember.id
+                ) as \"roles\" 
+            from crewmember
+        ");
+
+        //Crewmember::pluck('id', 'first_name', 'last_name');//->toArray();
             //$this->crewmemberRepository->all();
         var_dump( $crewmembers );
-        return $crewmembers->toJson();
+        return $crewmembers;//->toJson();
     }
 
 }
