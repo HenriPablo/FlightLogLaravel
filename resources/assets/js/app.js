@@ -39,6 +39,11 @@ const rootElement = document.getElementById("crew-assignment-wrapper");
  *    https://spectrum.chat/frontend/opinion/named-exports-vs-default-exports-or-both~32c58d5b-9ba0-46b5-b00d-783f2799ddb4
  https://github.com/Apress/pro-react-16/blob/master/20%20-%20Using%20the%20Data%20Store%20APIs/productapp/src/ProductDisplay.js
 
+ redux-saga:
+
+ https://medium.com/@lavitr01051977/make-your-first-call-to-api-using-redux-saga-15aa995df5b6
+ https://github.com/Lavitr/React-Redux-SAGA-tutorial-APP?source=post_page-----15aa995df5b6----------------------
+
  */
 
 ReactDOM.render(
