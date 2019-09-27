@@ -10,15 +10,30 @@
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
     },
     "devDependencies": {
-        "axios": "^0.18",
-        "babel-preset-react": "^6.23.0",
-        "bootstrap": "^4.0.0",
+        "@babel/cli": "^7.1.0",
+        "@babel/core": "^7.1.0",
+        "@babel/plugin-proposal-class-properties": "^7.5.5",
+        "@babel/preset-env": "^7.1.0",
+        "@babel/preset-react": "^7.0.0",
+        "axios": "^0.18.1",
+        "babel-preset-env": "^1.7.0",
+        "babel-preset-react": "^6.24.1",
+        "bootstrap": "^4.3.1",
         "cross-env": "^5.1",
-        "jquery": "^3.2",
+        "jquery": "^3.4.1",
         "laravel-mix": "^2.0",
-        "lodash": "^4.17.4",
+        "lodash": "^4.17.15",
         "popper.js": "^1.12",
-        "react": "^16.2.0",
+        "react": "^16.9.0",
         "react-dom": "^16.2.0"
+    },
+    "dependencies": {
+        "babel-plugin-transform-class-properties": "^6.24.1",
+        "babel-preset-es2016": "^6.24.1",
+        "core-js": "^3.2.1",
+        "react-bootstrap": "^1.0.0-beta.12",
+        "react-html-parser": "^2.0.2",
+        "react-redux": "^7.1.1",
+        "redux": "^4.0.4"
     }
 }
