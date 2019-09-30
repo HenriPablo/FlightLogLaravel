@@ -119,6 +119,7 @@ export const DropdownRoles = connectedDropdownSelect(
                         )
                     }
                     className={this.props.customClassNames}
+
                 >
                     <option>{this.props.emptyDefaultOption}</option>
                     {this.buildDropdownOptions()}
