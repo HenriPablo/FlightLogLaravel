@@ -1,0 +1,30 @@
+.masterWrapper {
+  padding-top: 1em;
+}
+
+.assign-btn{
+  width:100%;
+}
+
+.crewAssignments {
+  padding: 2em;
+}
+
+.assignmentContainer {
+  padding: 1em;
+  border: 1px solid #ccc;
+  background-color: #efefef;
+  border-radius: 8px;
+}
+
+.assignment {
+  background-color: #fff !important;
+  border-radius: 4px;
+  padding: 0.5em;
+  margin-top: 0.5em;
+}
+
+.select-person{
+  margin-left:10px;
+  margin-right:10px;
+}

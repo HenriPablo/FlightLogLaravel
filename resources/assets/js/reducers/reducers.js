@@ -1,30 +1,13 @@
 // Reducer
 //import roles from "./data/roles.json";
-import roles from "./data/roles2.json"
-
-//import persons from "./data/people.json";
-import persons from "./data/people2.json";
-
-import plane from "./data/plane.json";
-import messages from "./data/messages.json";
-import preferences from "./data/preferences.json"
-
+import persons from "../data/people2.json";
+import plane from "../data/plane";
+import messages from "../data/messages";
+import preferences from "../data/preferences"
 
 const counter = (state, action) => {
     //console.log("state: ", state);
-    //console.log("action: ", action);
-
-    let loadRoles = function(){
-        /**
-         * some guildes:
-         *      https://www.thegreatcodeadventure.com/react-redux-tutorial-part-iii-async-redux/
-         *      https://blog.jscrambler.com/asynchronous-operations-in-react-redux/
-         *      http://mkumaran.net/2019/bestWayToDoAsyncInReactJsUsingHooks/
-         *
-         *      https://redux.js.org/advanced/async-actions
-         */
-
-    }
+    console.log("action in REDUCER: ", action);
 
     let getDefaultPerson = function(){
         //return preferences.alwaysRenderSelf.defaultPerson; //persons.self;
@@ -78,7 +61,7 @@ const counter = (state, action) => {
 
     if (state === undefined) {
         return {
-            roles: roles,
+            roles: null,
             persons: persons,
             messages: messages,
             preferences: preferences,
@@ -106,24 +89,47 @@ const counter = (state, action) => {
                 showModal: state.showModal
             };
 
-        case "dropdownSelection":
+        case 'GET_ROLES' :
+            return {
+                ...state,
+                loading: true
+            };
+
+        case 'ROLES_RECEIVED' :
+            return {
+                ...state,
+                roles: action.json,
+                loading: false
+            };
+
+        case 'PEOPLE_RECEIVED' :
+            return {
+                ...state,
+                persons: action.json.persons,
+                ass: action.json.ass,
+                x: new Date().getTime(),
+                loading: false
+            };
+
+        case "SELECT_PEOPLE":
             return {
                 ...state,
                 ass: action.ass,
-                x: new Date().getTime()
+                x: new Date().getTime(),
+                loading: true
             };
 
-        case "personSelection":
+        case "PERSON_SELECTED":
             return {
                 ...state,
-                ass: action.ass,
-                x: new Date().getTime()
+                ass: action.json.ass,
+                x:new Date().getTime()
             };
 
-        case "deleteAssignment":
+        case "ASSIGNMENT_DELETED":
             return {
                 ...state,
-                ass: action.newAss,
+                ass: action.json.newAss,
                 assigned: state.assigned - 1
             };
 

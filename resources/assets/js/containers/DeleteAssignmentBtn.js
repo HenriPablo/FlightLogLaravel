@@ -9,31 +9,33 @@ const mapStateToProps = state => {
 };
 
 const deleteAss = (deleteKey, ass) => {
-    //console.log("deleteKey in deleteAss: ", deleteKey);
-    //console.log("ass in deleteAss: ", ass);
 
     var x = ass.filter(function(item) {
         return parseInt(item.assignmentKey) !== parseInt(deleteKey);
     });
-    //console.log("x in deleteAss: ", x);
     return x;
 };
 
 // Action
+
 const deleteAssignment = {
-    type: "deleteAssignment",
+    //type: "deleteAssignment",
+    type: "DELETE_ASSIGNMENT",
     payload: "bob",
-    newAss: []
+    ass: null,
+    newAss: [],
+    deleteKey: null
 };
 
 // Map Redux actions to component props
 const mapDispatchToProps = dispatch => {
     return {
         deleteAssignment: function(deleteKey, ass) {
-            //console.log("ass param in deleteAssignment: ", ass);
-            deleteAssignment.newAss = deleteAss(deleteKey, ass);
-            //console.log("newAss in delte btn: ", deleteAssignment.newAss);
+            console.log( "deleteAssignment hit in DELETE BUTTON")
+            deleteAssignment.ass = ass;
+            //deleteAssignment.newAss = deleteAss(deleteKey, ass);
             deleteAssignment.payload = deleteKey;
+            deleteAssignment.deleteKey = deleteKey;
             return dispatch(deleteAssignment);
         }
     };
@@ -57,7 +59,7 @@ export const DeleteAssignmentBtn = connectedDeleteButton(
                     }
                 >
                     <strong>X</strong>
-                    {/* X delete key: {this.props.deleteKey} */}
+                    {/*<span> X delete key: {this.props.deleteKey} </span>*/}
                 </button>
             );
         }

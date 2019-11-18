@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { ModalDialog } from "./ModalDailog";
-import ReactDOM from "react-dom";
-import Button from "react-bootstrap/Button";
+import { ModalDialog } from "../ModalDailog";
 
 const mapStateToProps = state => {
     return {
+        roles: state.roles,
         count: state.count,
         ass: state.ass,
         nextKey: state.nextKey,
@@ -42,7 +41,8 @@ const mapDispatchToProps = dispatch => {
                 modal.showModal = true;
                 modal.x = new Date().getTime();
                 return dispatch(modal);
-            } else {
+            }
+            else {
                 addAssignment.nextKey = nk;
                 addAssignment.ass = {
                     assignmentKey: nk,
@@ -66,12 +66,12 @@ export const AssignButton = connectedButton(
 
             return (
                 <div>
-                    <Button
+                    <button
                         onClick={() => this.props.createAssignment(this.props.nextKey, this.props)}
                         className="btn btn-primary assign-btn"
                     >
                         {this.props.messages.btnLbls.createAssignmentBtnLbl}
-                    </Button>
+                    </button>
                     <ModalDialog/>
 
                 </div>

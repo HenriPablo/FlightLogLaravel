@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Assignment from "./Assignment";
+import { getRoles } from "../actions";
 
 const mapStateToProps = state => {
     //console.log("state in mapStateToProps in Ass container: ", state);
@@ -13,18 +14,9 @@ const mapStateToProps = state => {
     };
 };
 
-// Action
-const deleteAssignment = {
-    type: "unassign"
-};
-
 // Map Redux actions to component props
-const mapDispatchToProps = dispatch => {
-    return {
-        increaseCount: function() {
-            return dispatch(deleteAssignment);
-        }
-    };
+const mapDispatchToProps = {
+    getRoles: getRoles,
 };
 
 const connectedContainer = connect(
@@ -35,6 +27,13 @@ const connectedContainer = connect(
 export const AssignmentsContainer = connectedContainer(
     class extends Component {
         buildAssignments = () => {
+            console.log("this.props.roles === null: ", this.props.roles === null);
+
+            if( this.props.roles === null ){
+                this.props.getRoles();
+                return null;
+            }
+
             var x = [];
             Object.keys(this.props.ass).forEach(item => {
                 //console.log("item in Ass container: ", item);
@@ -52,7 +51,7 @@ export const AssignmentsContainer = connectedContainer(
         render() {
             if (this.props.count > 0) {
                 return (
-                    <div className={"assignmentContainer"} key={"assContainer123"}>
+                    <div  className={"assignmentContainer"} key={"assContainer123"}>
                         {this.buildAssignments()}
                     </div>
                 );

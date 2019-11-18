@@ -1,41 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-var filterPersons = (type, persons) => {
-    var x =[];// {};
-    //var y = [];
-    //console.log("persons: ", persons);
-    //console.log("object.keys:", Object.keys(persons));
-
-    //console.log("type in roles dropdown: ", type);
-
-    for( let i = 0; i < persons.length; i++ ){
-
-        if( persons[i]["roles"].includes( type ))
-        {
-            /** TODO: replace first name with Person ID */
-            //x[persons[i].first_name] = persons[i]
-            x.push( persons[i]);
-        }
-    }
-    //console.log("filtered persons: ", x);
-
-    //console.log("filtered persons: ", x);
-    return x;
-};
-
-var assignPersonsToAss = (role, ass, persons, nk) => {
-    for (let i = 0; i < ass.length; i++) {
-        if (ass[i].assignmentKey === nk) {
-            ass[i].assignedPersons = persons;
-            ass[i].assignedRole = role;
-        }
-    }
-
-    //console.log("ass in assignPersonsToAss: ", ass);
-    return ass;
-};
-
 const mapStateToProps = state => {
     return {
         countValue: state.count,
@@ -50,34 +15,29 @@ const mapStateToProps = state => {
 
 // Action
 const dropdownSelection = {
-    type: "dropdownSelection",
+    type: "SELECT_ROLE",
     filterBy: "",
     filteredType: "",
     ass: [],
-    x: 0
+    x: 0,
+    persons: null,
+    rolesKey:null
 };
 
 // Map Redux actions to component props
 const mapDispatchToProps = dispatch => {
     return {
-        triggerChange: function(event, value, buildDropdown, persons, props) {
+        triggerChange: function( value, props) {
             dropdownSelection.filterBy = value;
-            dropdownSelection.filteredByData = buildDropdown;
-            let x = filterPersons(value, persons);
-
-            dropdownSelection.ass = assignPersonsToAss(
-                value,
-                props.ass,
-                x,
-                props.rolesKey //nextKey - 1
-            );
-            dropdownSelection.x = new Date().getTime();
-
-            //console.log("dropdown selection: ", dropdownSelection);
+            dropdownSelection.persons = props.persons;
+            dropdownSelection.rolesKey = props.rolesKey;
+            dropdownSelection.ass = props.ass;
             return dispatch(dropdownSelection);
         }
     };
 };
+
+
 
 const connectedDropdownSelect = connect(
     mapStateToProps,
@@ -101,6 +61,8 @@ export const DropdownRoles = connectedDropdownSelect(
             } else {return ""}
         }
 
+
+
         render() {
             //console.log("PROPS in ROLES DROPDOWN: ", this.props);
 
@@ -111,15 +73,11 @@ export const DropdownRoles = connectedDropdownSelect(
                     defaultValue={ this.selectedRole() }
                     onChange={event =>
                         this.props.triggerChange(
-                            event,
                             event.target.value,
-                            this.props.buildDropdown,
-                            this.props.persons,
                             this.props
                         )
                     }
                     className={this.props.customClassNames}
-
                 >
                     <option>{this.props.emptyDefaultOption}</option>
                     {this.buildDropdownOptions()}

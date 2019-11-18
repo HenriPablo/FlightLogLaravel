@@ -1,0 +1,36 @@
+.masterWrapper {
+  padding-top: 1em;
+}
+
+.assign-btn{
+  width:100%;
+}
+
+.crewAssignments {
+  /*padding: 0 2em 0 2em;*/
+}
+
+.no-assignments-mgs{
+  padding:1em;
+  text-align:center;
+}
+
+.assignmentContainer {
+  margin-top:1rem;
+  padding: 0 1rem 1rem 1rem;
+  border: 1px solid #ccc;
+  background-color: #efefef;
+  border-radius: .25rem;
+}
+
+.assignment {
+  /*background-color: #fff !important;*/
+  /*border-radius: 4px;*/
+  /*padding: 0.5em;*/
+  margin-top: 1rem;
+}
+
+.select-person{
+  margin-left:1rem;
+  margin-right:1rem;
+}
