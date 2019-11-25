@@ -16,11 +16,11 @@ PRODUCTION
 
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
+    <div id="root" class="form-group col-sm-12"></div>
     {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
     <a href="{!! route('flight.index') !!}" class="btn btn-default">Cancel</a>
 </div>
 
-<div id="crew-assignment-wrapper" class="form-group col-sm-12"></div>
 
 <div id="example"></div>
 <script src="{{asset('js/app.js')}}"></script>

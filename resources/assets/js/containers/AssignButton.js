@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { ModalDialog } from "../ModalDailog";
+import Button from "react-bootstrap/Button";
 
 const mapStateToProps = state => {
     return {
@@ -66,12 +67,12 @@ export const AssignButton = connectedButton(
 
             return (
                 <div>
-                    <button
+                    <Button
                         onClick={() => this.props.createAssignment(this.props.nextKey, this.props)}
                         className="btn btn-primary assign-btn"
                     >
                         {this.props.messages.btnLbls.createAssignmentBtnLbl}
-                    </button>
+                    </Button>
                     <ModalDialog/>
 
                 </div>

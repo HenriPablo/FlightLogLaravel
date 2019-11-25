@@ -1,9 +1,9 @@
 // Reducer
 //import roles from "./data/roles.json";
 import persons from "../data/people2.json";
-import plane from "../data/plane";
-import messages from "../data/messages";
-import preferences from "../data/preferences"
+import plane from "../data/plane.json";
+import messages from "../data/messages.json";
+import preferences from "../data/preferences.json"
 
 const counter = (state, action) => {
     //console.log("state: ", state);

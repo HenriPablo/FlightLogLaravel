@@ -57,7 +57,10 @@ var assignPersonsToAss = (role, ass, persons, nk) => {
 function* fetchPeople(action){
     console.log("Incoming ACTION to saga: ", action );
     /** TEMP  - remove in the Laravel proj. when we can actually get persons via the ajax call */
-    const json = yield fetch('http://localhost:3000/ajax-people.json?roleId=89' , {headers : {'Content-Type': 'application/json','Accept': 'application/json'}})
+    // crewmembersAjax
+//    const json = yield fetch('http://localhost:3000/ajax-people.json?roleId=89' , {headers : {'Content-Type': 'application/json','Accept': 'application/json'}})
+
+    const json = yield fetch('/crewmembersAjax' , {headers : {'Content-Type': 'application/json','Accept': 'application/json'}})
         .then( response => response.json());
 
     let persons = filterPersons(action.filterBy, action.persons);
