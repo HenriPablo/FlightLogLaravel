@@ -147,7 +147,7 @@ class CrewmemberController extends Controller
 
         //Crewmember::pluck('id', 'first_name', 'last_name');//->toArray();
             //$this->crewmemberRepository->all();
-        var_dump( $crewmembers );
+        //var_dump( $crewmembers );
         return $crewmembers;//->toJson();
     }
 
