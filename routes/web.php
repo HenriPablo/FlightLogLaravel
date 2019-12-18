@@ -41,3 +41,5 @@ Route::get("crewmemberTypeByIdAjax","CrewmemberTypeController@crewmemberTypeById
 Route::get("crewmemberTypeByIdAjax/{id}","CrewmemberTypeController@crewmemberTypeByIdAjax");
 
 Route::get("crewmemberTypesAjax", "CrewmemberTypeController@crewmemberTypesAjax");
+
+Route::get("getPreferencesAjax","PreferencesController@getPreferencesAjax");
