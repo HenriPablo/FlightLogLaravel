@@ -65,6 +65,64 @@
         </style>
     </head>
     <body>
+
+    <?php
+//    $classes = get_declared_classes();
+//
+//    foreach ($classes as $class) {
+//        //dump($class);
+//        if (is_subclass_of($class, 'App\Http\Controllers\Controller')) {
+//            dump($class);
+//            echo $class . '<br />';
+//            $methods = get_class_methods($class);
+//            foreach ($methods as $method)
+//                echo '<h1 style="color:red;">' . $method . '<h1/>';
+//        }
+//    }
+
+//    $controllers = [];
+//    $i=0;
+//    foreach (Route::getRoutes()->getRoutes() as $route)
+//    {
+//        $action = $route->getAction();
+//
+//        if (array_key_exists('controller', $action))
+//        {
+//            $_action = explode('@',$action['controller']);
+//            $_namespaces_chunks = explode('\\',$_action[0]);
+//
+//            dump( get_parent_class( $_namespaces_chunks ));
+//
+//            $controllers[$i]['controller'] = end($_namespaces_chunks);
+//            $controllers[$i]['action'] = end($_action);
+//            $controllers[$i]['namespace'] = $action['controller'];
+//            $controllers[$i]['route'] = $route;
+//        }
+//        $i++;
+//    }
+//
+//    dump($controllers);
+
+
+
+    $controllers = [];
+
+    foreach (Route::getRoutes()->getRoutes() as $route)
+    {
+        $action = $route->getAction();
+
+        dump( $route );
+
+        if (array_key_exists('controller', $action))
+        {
+            // You can also use explode('@', $action['controller']); here
+            // to separate the class name from the method
+            $controllers[] = $action['controller'];
+        }
+    }
+    //dump( $controllers );
+    ?>
+<h1>Howdy!</h1>
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">

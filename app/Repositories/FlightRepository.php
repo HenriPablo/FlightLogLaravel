@@ -25,7 +25,6 @@ class FlightRepository extends BaseRepository
      */
     public function model()
     {
-        // TODO: Implement model() method.
         return Flight::class;
     }
 }
