@@ -92,8 +92,14 @@ const counter = (state, action) => {
         case 'GET_ROLES' :
             return {
                 ...state,
-                loading: true
+                loading: true,
+                preferences: action.jsonPreferences
             };
+
+        case 'PREFERENCES_RECEIVED' :
+            return {
+                ...state,
+            }
 
         case 'ROLES_RECEIVED' :
             return {
