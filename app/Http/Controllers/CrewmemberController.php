@@ -137,18 +137,28 @@ class CrewmemberController extends Controller
            select
                 first_name,
                 last_name,
+                self,
                 ARRAY(
                     select crewmembertype_id
                     from crewmember_crewmembertype_xref
                     where crewmember_crewmembertype_xref.crewmember_id = crewmember.id
-                ) as \"roles\" 
+                ) as \"roles\"
             from crewmember
         ");
 
         //Crewmember::pluck('id', 'first_name', 'last_name');//->toArray();
             //$this->crewmemberRepository->all();
         //var_dump( $crewmembers );
-        return $crewmembers;//->toJson();
+        return json_encode($crewmembers);//->toJson();
+    }
+
+    public function crewmemberByIdAjax($id){
+        $crewmemberById = DB::select(
+            'select *
+            from crewmember
+            where id =?', [$id]
+        );
+        return json_encode( $crewmemberById );
     }
 
 }

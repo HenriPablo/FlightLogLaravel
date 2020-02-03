@@ -25,6 +25,7 @@ const store = createStore( reducer, enhancers );
 const rootElement = document.getElementById("root");
 
 sagaMiddleware.run(rootSaga);
+store.dispatch( {type:"START_AJAX_INIT"});
 
 /**
  * some guides:
