@@ -14,7 +14,7 @@ let getDefaultPerson = function(persons){
 
 let defaultAssigment = function( prefs, people ){
     let defaultAss = [];
-    if( typeof prefs != "undefined" && prefs.alwaysRenderSelf.value === true){
+    if( typeof prefs != "undefined" && prefs.alwaysRenderSelf === true){
         defaultAss = [{
             "assignedPerson": getDefaultPerson(people),
             "assignedPersons": getDefaultPerson(people),// { [preferences.alwaysRenderSelf.defaultPerson] : persons.self },
@@ -58,7 +58,7 @@ function* workFetchInitAjaxData( action ) {
     action.assigned = 0;
     action.preferences = jsonPreferences
 
-    if( jsonPreferences.alwaysRenderSelf.value == true){
+    if( jsonPreferences.alwaysRenderSelf == true){
         // const peopleJson = yield fetch('http://localhost:3000/ajax-people.json?roleId=89' , {headers : {'Content-Type': 'application/json','Accept': 'application/json'}})
         //     .then( response => response.json());
 ///crewmemberByIdAjax/89
