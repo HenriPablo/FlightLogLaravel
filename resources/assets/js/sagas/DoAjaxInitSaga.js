@@ -54,9 +54,6 @@ function* workFetchInitAjaxData(action) {
     action.preferences = jsonPreferences;
 
     if (jsonPreferences.alwaysRenderSelf == true) {
-        // const peopleJson = yield fetch('http://localhost:3000/ajax-people.json?roleId=89' , {headers : {'Content-Type': 'application/json','Accept': 'application/json'}})
-        //     .then( response => response.json());
-///crewmemberByIdAjax/89
         const peopleJson = yield fetch('/crewmembersAjax', {
             headers: {
                 'Content-Type': 'application/json',
