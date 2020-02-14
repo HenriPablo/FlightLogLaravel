@@ -1,10 +1,11 @@
 import {put, takeLatest} from "@redux-saga/core/effects";
+import {createAssignSelfPrefs} from "../utils/AppInitutils";
 
-let getDefaultPerson = function(persons){
+let getDefaultPerson = function (persons) {
     console.log("PERSONS in getDefaultPerson(): ", persons)
     let defautlPerson = {};
-    for( let i = 0; i < persons.length; i++ ){
-        if( persons[i].self === true ){
+    for (let i = 0; i < persons.length; i++) {
+        if (persons[i].self === true) {
             defautlPerson = persons[i];
             break;
         }
@@ -12,9 +13,9 @@ let getDefaultPerson = function(persons){
     return defautlPerson;
 }
 
-let defaultAssigment = function( prefs, people ){
+let defaultAssigment = function (prefs, people) {
     let defaultAss = [];
-    if( typeof prefs != "undefined" && prefs.alwaysRenderSelf === true){
+    if (typeof prefs != "undefined" && prefs.alwaysRenderSelf === true) {
         defaultAss = [{
             "assignedPerson": getDefaultPerson(people),
             "assignedPersons": getDefaultPerson(people),// { [preferences.alwaysRenderSelf.defaultPerson] : persons.self },
@@ -27,8 +28,8 @@ let defaultAssigment = function( prefs, people ){
 }
 
 
-function* workFetchInitAjaxData( action ) {
-    console.log("action at TOP OF ASSIGN SAGA: ", action );
+function* workFetchInitAjaxData(action) {
+    console.log("action at TOP OF ASSIGN SAGA: ", action);
 
     /** in LRAVEL this one needs to be initialized with a proper yield fetch */
     action.ass = [];
@@ -36,36 +37,35 @@ function* workFetchInitAjaxData( action ) {
     action.nextKey = 0;
     action.assigned = 0;
 
-    // /const jsonPreferences = {
-    //     "alwaysRenderSelf" : {
-    //         "value" : true,
-    //         "tip" : "Render dropdown selects for Self as pilot and specified role, for example PIC, Student, etc.",
-    //         "defaultRole" : "59",
-    //         "defaultPerson" : "self"
-    //     }
-    // }
+    const rawPrefs = yield fetch('/getPreferencesAjax',
+        {
+            headers: {
+                'Content-Type': 'application/json', 'Accept': 'application/json'
+            }
+        }).then(response => response.json());
 
-    const jsonPreferences = yield fetch('/getPreferencesAjax',
-    {
-        headers: {
-            'Content-Type':'application/json', 'Accept':'application/json'
-        }
-    }).then( response => response.json());
+    console.log( "rawPrefs: ", rawPrefs );
 
+    const jsonPreferences = createAssignSelfPrefs( rawPrefs );
 
     action.count = 0;
     action.nextKey = 0;
     action.assigned = 0;
-    action.preferences = jsonPreferences
+    action.preferences = jsonPreferences;
 
-    if( jsonPreferences.alwaysRenderSelf == true){
+    if (jsonPreferences.alwaysRenderSelf == true) {
         // const peopleJson = yield fetch('http://localhost:3000/ajax-people.json?roleId=89' , {headers : {'Content-Type': 'application/json','Accept': 'application/json'}})
         //     .then( response => response.json());
 ///crewmemberByIdAjax/89
-        const peopleJson = yield fetch('/crewmembersAjax' , {headers : {'Content-Type': 'application/json','Accept': 'application/json'}})
-            .then( response => response.json());
+        const peopleJson = yield fetch('/crewmembersAjax', {
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+        })
+            .then(response => response.json());
 
-        action.ass = defaultAssigment( jsonPreferences, peopleJson);
+        action.ass = defaultAssigment(jsonPreferences, peopleJson);
         action.count = 1;
         action.nextKey = 1;
         action.assigned = 1;
@@ -73,9 +73,9 @@ function* workFetchInitAjaxData( action ) {
 
     let bigJ = action;
 
-    yield put( { type: "AJAX_INIT_DONE", bigJ } );
+    yield put({type: "AJAX_INIT_DONE", bigJ});
 }
 
 export function* triggerInitAjaxDataActionWatcher() {
-    yield takeLatest("START_AJAX_INIT" , workFetchInitAjaxData);
+    yield takeLatest("START_AJAX_INIT", workFetchInitAjaxData);
 }
