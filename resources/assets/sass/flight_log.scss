@@ -1,0 +1,13 @@
+/** vars */
+$desktop_width: 1140px;
+
+
+
+#page-content-wrapper
+{
+    width: 100%;
+    max-width: $desktop_width;
+    margin-right: auto;
+    margin-left: auto;
+}
+

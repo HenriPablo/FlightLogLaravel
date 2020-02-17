@@ -18,8 +18,8 @@ let defaultAssigment = function (prefs, people) {
     if (typeof prefs != "undefined" && prefs.alwaysRenderSelf === true) {
         defaultAss = [{
             "assignedPerson": getDefaultPerson(people),
-            "assignedPersons": getDefaultPerson(people),// { [preferences.alwaysRenderSelf.defaultPerson] : persons.self },
-            "assignedRole": prefs.alwaysRenderSelf.defaultRole, //getDefaultRole(x),
+            "assignedPersons": getDefaultPerson(people),
+            "assignedRole": prefs.defaultRole,
             "assignmentKey": 0
         }]
     }

@@ -135,6 +135,7 @@ class CrewmemberController extends Controller
 
         $crewmembers = DB::select("
            select
+                id,
                 first_name,
                 last_name,
                 self,

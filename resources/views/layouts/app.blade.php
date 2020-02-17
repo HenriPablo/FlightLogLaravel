@@ -29,6 +29,10 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
+    <!-- START CUSTOM CSS -->
+    <link rel="stylesheet" href="{{ asset('css/flight_log.css') }}">
+    <!-- END START CUSTOM CSS -->
+
     @yield('css')
 
 <!-- jQuery 3.1.1 -->

@@ -8,6 +8,7 @@ use Prettus\Repository\Criteria\RequestCriteria;
 use App\Repositories\PreferencesRepository;
 use Flash;
 use Response;
+use Illuminate\Support\Facades\DB;
 
 class PreferencesController extends Controller
 {
@@ -63,8 +64,11 @@ class PreferencesController extends Controller
 
     public function getPreferencesAjax( Request $request){
         $this->preferencesRepository->pushCriteria( new RequestCriteria( $request));
-        $preferences = $this->preferencesRepository->all();
+        //$preferences = $this->preferencesRepository->all();
 
+        $preferences = DB::select(
+            'select * from preferences where preferences_group_id = (select id from preferences_group where preferences_group_code =?)', ['flight']
+        );
         return  $preferences;// "hello world";
     }
 

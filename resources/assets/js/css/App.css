@@ -1,3 +1,4 @@
+/** for some reason this on is not used, but the index.css is **/
 .masterWrapper {
   padding-top: 1em;
 }
@@ -7,11 +8,11 @@
 }
 
 .crewAssignments {
-  padding: 2em;
+  /*padding: 2em;*/
 }
 
 .assignmentContainer {
-  padding: 1em;
+  /*padding: 1em;*/
   border: 1px solid #ccc;
   background-color: #efefef;
   border-radius: 8px;

@@ -1,3 +1,7 @@
+div#root{
+    padding-left:0;
+    padding-right:0;
+}
 .masterWrapper {
   padding-top: 1em;
 }
@@ -7,7 +11,7 @@
 }
 
 .crewAssignments {
-  /*padding: 0 2em 0 2em;*/
+  padding: 0 2em 0 2em;
 }
 
 .no-assignments-mgs{

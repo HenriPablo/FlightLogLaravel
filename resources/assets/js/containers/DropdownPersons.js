@@ -73,6 +73,10 @@ export const DropdownPersons = connectedDropdownSelect(
                         l = assignments[cnt].assignedPerson.first_name + " " + assignments[(cnt2 > -1) ? cnt2 : cnt ].assignedPerson.last_name;
                     }
 
+                console.log("K, V, L in makeOptionX: ", k,l,v );
+                console.log( "K: ", k );
+                console.log( "L: ", l );
+                console.log( "V: ", v );
                 return <option key={k} value={v}>{l}</option>
             }
 
@@ -90,13 +94,14 @@ export const DropdownPersons = connectedDropdownSelect(
             )
             {
                 console.log("1st IF");
+                console.log("assignments in 1st IF: ", assignments);
                 y.push( makeOptionX( assignments, 0 ))
             }
             /** Changing default role on a default assignment */
             else if(
                 this.props.preferences.alwaysRenderSelf === true &&
                 this.props.ass.length === 1 &&
-                this.props.preferences.alwaysRenderSelf.defaultRole !== this.props.ass[0].assignedRole &&
+                this.props.preferences.alwaysRenderSelf.defaultRole != this.props.ass[0].assignedRole &&
                 this.props.ass[0].assignedRole !== null
             ){
                 //console.log("1st ESLE IF")
