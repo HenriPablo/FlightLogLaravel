@@ -13,12 +13,17 @@ PRODUCTION
 
 <div class="form-group col-sm-6">
     {!! Form::label('id', 'ID:') !!}
-    {!! Form::text('category', null, ['class' => 'form-control']) !!}
+    {!! Form::text('id', null, ['class' => 'form-control']) !!}
 </div>
 
 <div class="form-group col-sm-6">
     {!! Form::label('date', 'Date:') !!}
     {!! Form::text('date', null, ['class'=>'form-control']) !!}
+</div>
+
+<div class="form-group col-sm-6">
+    {!! Form::label('aircraft_id', 'Aircraft:') !!}
+    {!! Form::text('aricraft_id', null, ['class'=>'form-control']) !!}
 </div>
 
 <div class="form-group col-sm-6">
@@ -42,6 +47,11 @@ PRODUCTION
 </div>
 
 <div class="form-group col-sm-6">
+    {!! Form::label('no_inst_approaches', 'No. Inst. Approaches:') !!}
+    {!! Form::text('no_ins_approaches', 0, ['class'=>'form-control']) !!}
+</div>
+
+<div class="form-group col-sm-6">
     {!! Form::label('no_day_landings', 'No. Day Landings:') !!}
     {!! Form::text('no_day_landings', null, ['class'=>'form-control']) !!}
 </div>
@@ -52,9 +62,15 @@ PRODUCTION
 </div>
 
 <div class="form-group col-sm-6">
-    {!! Form::label('no_inst_approaches', 'No. Inst. Approaches:') !!}
-    {!! Form::text('no_ins_approaches', 0, ['class'=>'form-control']) !!}
+    {!! Form::label('as_flight_instructor') !!}
+    {!! Form::text('as_flight_instructor', 0, ['class'=>'form-control']) !!}
 </div>
+
+<div class="form-group col-sm-6">
+    {!! Form::label('cross_country') !!}
+    {!! Form::text('cross_country', 0, ['class'=>'form-control']) !!}
+</div>
+
 
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
@@ -63,21 +79,23 @@ PRODUCTION
     <a href="{!! route('flight.index') !!}" class="btn btn-default">Cancel</a>
 </div>
 <!-- COLUMNS
-id
-date
-aircraft_id
-departure
-destination
-route
-remarks
-no_inst_aproaches
-no_day_landings
-no_night_landings
+    id
+    date
+    aircraft_id
+    departure
+    route
+    destination
+    remarks
+    no_inst_aproaches
+    no_day_landings
+    no_night_landings
+
 **airplane-single-engine-land
 **airplane-multi-engine-land
 **rotorcraft-helicopter
-as_flight_instructor
-cross_country
+
+    as_flight_instructor
+    cross_country
 daytime
 nighttime
 actual_instrument
@@ -89,12 +107,6 @@ second_in_command
 total_duration_of_flight
 
 extended_flight_details_id
-
-flight_pkey
-aircraft_id_fk
-departure_fk
-destination_fk
-extended_flight_details_fk
 
 -->
 
