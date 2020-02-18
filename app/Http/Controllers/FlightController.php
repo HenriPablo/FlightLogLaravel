@@ -12,6 +12,7 @@ use App\Http\Requests\UpdateFlightRequest;
 use App\Repositories\FlightRepository;
 use Illuminate\Http\Request;
 use App\Models\aircraft;
+use App\Models\Airport;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
@@ -88,7 +89,13 @@ class FlightController extends Controller
             return redirect(route('flight.index'));
         }
 
-        return view('flight.edit')->with('flight', $flight);
+        $aircraft = aircraft::pluck('aircraft_tail_number', 'id')->toArray();
+        $airport = Airport::pluck('')->toArray();
+
+        return view('flight.edit')
+            ->with('flight', $flight)
+            ->with('aircraft', $aircraft)
+            ->with('airport', $airport);
     }
 
     public function update($id, UpdateFlightRequest $request)
