@@ -23,7 +23,7 @@ PRODUCTION
 
 <div class="form-group col-sm-6">
     {!! Form::label('aircraft_id', 'Aircraft:') !!}
-    {!! Form::text('aricraft_id', null, ['class'=>'form-control']) !!}
+    {!! Form::text('aircraft_id', null, ['class'=>'form-control']) !!}
 </div>
 
 <div class="form-group col-sm-6">
@@ -71,6 +71,58 @@ PRODUCTION
     {!! Form::text('cross_country', 0, ['class'=>'form-control']) !!}
 </div>
 
+<div class="form-group col-sm-6">
+    {!! Form::label('daytime', 'Daytime:') !!}
+    {!! Form::text('daytime', null, ['class'=>'form-control']) !!}
+</div>
+
+<div class="form-group col-sm-6">
+    {!! Form::label('nighttime', 'Nighttime:') !!}
+    {!! Form::text('nighttime', null, ['class'=>'form-control']) !!}
+</div>
+
+<div class="form-group col-sm-6">
+    {!! Form::label('actual_instrument', 'Actual Instrument') !!}
+    {!! Form::text('actual_instrument', 0, ['class'=>'form-control']) !!}
+</div>
+
+<div class="form-group col-sm-6">
+    {!! Form::label('simulated_instrument', 'Simulated Instrument') !!}
+    {!! Form::text('simulated_instrument', 0, ['class'=>'form-control']) !!}
+</div>
+
+<div class="form-group col-sm-6">
+    {!! Form::label('ground_trainer', 'Ground Trainer') !!}
+    {!! Form::text('ground_trainer', 0, ['class'=>'form-control']) !!}
+</div>
+
+<div class="form-group col-sm-6">
+    {!! Form::label('dual_received', 'Dual Received') !!}
+    {!! Form::text('dual_received', null, ['class'=>'form-control']) !!}
+</div>
+
+<div class="form-group col-sm-6">
+    {!! Form::label('pilot_in_command', 'PIC') !!}
+    {!! Form::text('pilot_in_command', null, ['class'=>'form-control']) !!}
+</div>
+
+<div class="form-group col-sm-6">
+    {!! Form::label('second_in_command', 'SIC') !!}
+    {!! Form::text('second_in_command', null, ['class'=>'form-control']) !!}
+</div>
+
+<div class="form-group col-sm-6">
+    {!! Form::label('total_duration_of_flight', 'Total Duration of Flight') !!}
+    {!! Form::text('total_duration_of_flight', null, ['class'=>'form-control']) !!}
+</div>
+
+<div class="form-group col-sm-6">
+    {!! Form::label('extended_flight_details', 'Extended Flight Details') !!}
+    {!! Form::textarea('extended_flight_details', null, ['class'=>'form-control']) !!}
+</div>
+
+
+
 
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
@@ -96,15 +148,15 @@ PRODUCTION
 
     as_flight_instructor
     cross_country
-daytime
-nighttime
-actual_instrument
-simulated_instrument
-ground_trainer
-dual_received
-pilot_in_command
-second_in_command
-total_duration_of_flight
+    daytime
+    nighttime
+    actual_instrument
+    simulated_instrument
+    ground_trainer
+    dual_received
+    pilot_in_command
+    second_in_command
+    total_duration_of_flight
 
 extended_flight_details_id
 
