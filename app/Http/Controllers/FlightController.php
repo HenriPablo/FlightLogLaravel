@@ -89,9 +89,9 @@ class FlightController extends Controller
             return redirect(route('flight.index'));
         }
 
-        $aircraft = aircraft::pluck('aircraft_tail_number', 'id')->toArray();
-        $airport = Airport::pluck('')->toArray();
-
+        $aircraft = aircraft::pluck('aircraft_tail_number', 'id', 'nickname')->toArray();
+        $airport = Airport::pluck('id', 'ico_identifier', 'name')->toArray();
+        //var_dump($aircraft);
         return view('flight.edit')
             ->with('flight', $flight)
             ->with('aircraft', $aircraft)

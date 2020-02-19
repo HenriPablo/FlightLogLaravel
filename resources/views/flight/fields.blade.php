@@ -21,14 +21,31 @@ PRODUCTION
     {!! Form::text('date', null, ['class'=>'form-control']) !!}
 </div>
 
+{{--<div class="form-group col-sm-6">--}}
+{{--    {!! Form::label('aircraft_id', 'Aircraft:') !!}--}}
+{{--    {!! Form::text('aircraft_id', null, ['class'=>'form-control']) !!}--}}
+{{--</div>--}}
+
 <div class="form-group col-sm-6">
-    {!! Form::label('aircraft_id', 'Aircraft:') !!}
-    {!! Form::text('aircraft_id', null, ['class'=>'form-control']) !!}
+    {!! Form::label('aircraft', 'Aircraft:') !!}
+    <select class="form-control" name="aircraft" required id="aircraft">
+        <option value="option_select" disabled>Aircraft</option>
+        @foreach( $aircraft as $id => $cls)
+            <option value="{{$id}}" {{ $id  == $flight->aircraft_id  ? 'selected' : ''}}>{{ $cls }}</option>
+        @endforeach
+    </select>
 </div>
 
 <div class="form-group col-sm-6">
     {!! Form::label('departure', 'Departure:') !!}
-    {!! Form::text('departure', null, ['class'=>'form-control']) !!}
+{{--    {!! Form::text('departure', null, ['class'=>'form-control']) !!}--}}
+
+    <select class="form-control" name="departure" required id="departure">
+        @foreach( $airport as $id => $ico_id)
+            <option value="{{$ico_id}}" {{ $ico_id == $flight->departure ? 'selected' : '' }}>{{$id}}</option>
+        @endforeach
+    </select>
+
 </div>
 
 <div class="form-group col-sm-6">
@@ -38,7 +55,14 @@ PRODUCTION
 
 <div class="form-group col-sm-6">
     {!! Form::label('destination', 'Destination:') !!}
-    {!! Form::text('destination', null, ['class'=>'form-control']) !!}
+{{--    {!! Form::text('destination', null, ['class'=>'form-control']) !!}--}}
+
+    <select class="form-control" name="destination" required id="destination">
+
+        @foreach( $airport as $id => $ico_id)
+            <option value="{{$ico_id}}" {{ $ico_id == $flight->destination ? 'selected' : '' }}>{{$id}}</option>
+        @endforeach
+    </select>
 </div>
 
 <div class="form-group col-sm-6">
