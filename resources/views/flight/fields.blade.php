@@ -28,7 +28,7 @@ PRODUCTION
 
 <div class="form-group col-sm-6">
     {!! Form::label('aircraft', 'Aircraft:') !!}
-    <select class="form-control" name="aircraft" required id="aircraft">
+    <select class="form-control" name="aircraft_id" required id="aircraft_id">
         <option value="option_select" disabled>Aircraft</option>
         @foreach( $aircraft as $id => $cls)
             <option value="{{$id}}" {{ $id  == $flight->aircraft_id  ? 'selected' : ''}}>{{ $cls }}</option>

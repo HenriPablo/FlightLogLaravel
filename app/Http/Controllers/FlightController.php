@@ -17,6 +17,7 @@ use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 use Illuminate\Support\Facades\DB;
+use function Psy\debug;
 
 
 class FlightController extends Controller
@@ -100,16 +101,19 @@ class FlightController extends Controller
 
     public function update($id, UpdateFlightRequest $request)
     {
-        $flight = $this->flightRepository->findWithoutFail($id);
+        //dump( $request );
 
-        if (empty($flight)) {
+        $flight1 = $this->flightRepository->findWithoutFail($id);
+        //dump($flight);
+        if (empty($flight1)) {
             Flash::error('Flight not found');
 
             return redirect(route('flight.index'));
         }
 
-        $flight = $this->flightRepository->update($request->all(), $id);
-
+        $flight2 = $this->flightRepository->update($request->all(), $id);
+        //dump($flight2);
+        //die();
         Flash::success('Flight updated successfully.');
 
         return redirect(route('flight.index'));

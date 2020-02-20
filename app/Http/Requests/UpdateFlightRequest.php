@@ -3,9 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Models\AircraftCategory;
+use App\Models\Flight;
 
-class UpdateAircraftCategoryRequest extends FormRequest
+class UpdateFlightRequest extends FormRequest
 {
 
     /**
@@ -25,6 +25,6 @@ class UpdateAircraftCategoryRequest extends FormRequest
      */
     public function rules()
     {
-        return AircraftCategory::$rules;
+        return Flight::$rules;
     }
 }
