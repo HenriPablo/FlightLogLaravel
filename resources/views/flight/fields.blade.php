@@ -1,88 +1,161 @@
-<!-- DEVELOPMENT -->
-{{--<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js" ></script>--}}
-{{--<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" ></script>--}}
+<style>
+    .box{
+        border-top-width:0;
+        border-left-width: 0;
+        border-bottom-width:0;
+        border-left-width: 0;
+        border-radius: 0!important;
 
-<!--
-PRODUCTION
-{{--<script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>--}}
-{{--<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>--}}
--->
+        padding: 0!important;
+    }
 
-<!-- Flight -->
+    .box-body{
+        padding-left:0!important;
+    }
 
+    section.content-header{
+        /*padding-left:0;*/
+        padding-bottom: 0!important;
+    }
 
-<div class="form-group col-sm-6">
-    {!! Form::label('id', 'ID:') !!}
-    {!! Form::text('id', null, ['class' => 'form-control']) !!}
+    form > div.row {
+        padding-top:1rem;
+        /*border: 1px solid red;*/
+    }
+
+    .row{
+        margin-left:0;
+        margin-right:0;
+    }
+
+    .remarks-row{
+        background: #e8e8e8;
+    }
+    .remarks{
+        flex: 0 0 11.11%;
+        max-width:11.11%;
+        /*background: #8db863;*/
+        text-align: right;
+    }
+
+    .remarks-text-area
+    {
+        flex: 0 0 88.89%;
+        max-width: 88.89%;
+    }
+</style>
+
+<div class="row">
+
+    <div class="col-sm-4">
+        <div class="form-group row">
+            {!! Form::label('id', 'ID:', ['class'=>'col-sm-4 col-form-label text-right']) !!}
+            <div class="col-sm-8">
+                {!! Form::text('id', null, ['class' => 'form-control', 'readonly']) !!}
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-4">
+        <div class="form-group row">
+            {!! Form::label('date', 'Date:', ['class'=>'col-sm-4 col-form-label text-right']) !!}
+            <div class="col-sm-8">
+                {!! Form::text('date', null, ['class'=>'form-control']) !!}
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-4">
+        <div class="form-group row">
+            {!! Form::label('aircraft', 'Aircraft:',  ['class'=>'col-sm-4 col-form-label text-right']) !!}
+
+            <div class="col-sm-8">
+                <select class="form-control" name="aircraft_id" required id="aircraft_id">
+                    @foreach( $aircraft as $id => $cls)
+                        <option value="{{$id}}" {{ $id  == $flight->aircraft_id  ? 'selected' : ''}}>{{ $cls }}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+    </div>
+
 </div>
 
-<div class="form-group col-sm-6">
-    {!! Form::label('date', 'Date:') !!}
-    {!! Form::text('date', null, ['class'=>'form-control']) !!}
+
+
+<div class="row">
+    <div class="col-sm-4">
+        <div class="form-group row">{!! Form::label('departure', 'Departure:', ['class'=>'col-sm-4 col-form-label text-right']) !!}
+            <div class="col-sm-8">
+                <select class="form-control" name="departure" required id="departure">
+                    @foreach( $airport as $id => $ico_id)
+                        <option
+                            value="{{$ico_id}}" {{ $ico_id == $flight->departure ? 'selected' : '' }}>{{$id}}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-4">
+        <div class="form-group row">{!! Form::label('route', 'Route:', ['class'=>'col-sm-4 col-form-label text-right']) !!}
+            <div class="col-sm-8">
+                {!! Form::text('route', null, ['class'=>'form-control']) !!}
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-4">
+        <div class="form-group row">{!! Form::label('destination', 'Destination:', ['class'=>'col-sm-4 col-form-label text-right']) !!}
+            <div class="col-sm-8">
+                <select class="form-control" name="destination" required id="destination">
+                    @foreach( $airport as $id => $ico_id)
+                        <option
+                            value="{{$ico_id}}" {{ $ico_id == $flight->destination ? 'selected' : '' }}>{{$id}}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+    </div>
 </div>
 
-{{--<div class="form-group col-sm-6">--}}
-{{--    {!! Form::label('aircraft_id', 'Aircraft:') !!}--}}
-{{--    {!! Form::text('aircraft_id', null, ['class'=>'form-control']) !!}--}}
-{{--</div>--}}
-
-<div class="form-group col-sm-6">
-    {!! Form::label('aircraft', 'Aircraft:') !!}
-    <select class="form-control" name="aircraft_id" required id="aircraft_id">
-        <option value="option_select" disabled>Aircraft</option>
-        @foreach( $aircraft as $id => $cls)
-            <option value="{{$id}}" {{ $id  == $flight->aircraft_id  ? 'selected' : ''}}>{{ $cls }}</option>
-        @endforeach
-    </select>
+<div class="row remarks-row">
+    <div class="col">
+        <div class="form-group row">
+            {!! Form::label('remarks', 'Remarks:', ['class'=>'col-sm-4 col-form-label, text-right, remarks']) !!}
+            <div class="col-sm-8 remarks-text-area">
+                {!! Form::textarea('remarks', null, ['class'=>'form-control']) !!}
+            </div>
+        </div>
+    </div>
 </div>
 
-<div class="form-group col-sm-6">
-    {!! Form::label('departure', 'Departure:') !!}
-{{--    {!! Form::text('departure', null, ['class'=>'form-control']) !!}--}}
 
-    <select class="form-control" name="departure" required id="departure">
-        @foreach( $airport as $id => $ico_id)
-            <option value="{{$ico_id}}" {{ $ico_id == $flight->departure ? 'selected' : '' }}>{{$id}}</option>
-        @endforeach
-    </select>
+<div class="row">
+    <div class="col-sm-4">
+        <div class="form-group row">
+            {!! Form::label('no_inst_approaches', 'No. Inst. Approaches:', ['class'=>'col-sm-4 col-form-label text-right']) !!}
+            <div class="col-sm-8">
+                {!! Form::text('no_ins_approaches', 0, ['class'=>'form-control']) !!}
+            </div>
+        </div>
+    </div>
 
-</div>
+    <div class="col-sm-4">
+        <div class="form-group row">
+            {!! Form::label('no_day_landings', 'No. Day Landings:', ['class'=>'col-sm-4 col-form-label text-right']) !!}
+            <div class="col-sm-8">
+                {!! Form::text('no_day_landings', null, ['class'=>'form-control']) !!}</div>
+        </div>
+    </div>
 
-<div class="form-group col-sm-6">
-    {!! Form::label('route', 'Route:') !!}
-    {!! Form::text('route', null, ['class'=>'form-control']) !!}
-</div>
-
-<div class="form-group col-sm-6">
-    {!! Form::label('destination', 'Destination:') !!}
-{{--    {!! Form::text('destination', null, ['class'=>'form-control']) !!}--}}
-
-    <select class="form-control" name="destination" required id="destination">
-
-        @foreach( $airport as $id => $ico_id)
-            <option value="{{$ico_id}}" {{ $ico_id == $flight->destination ? 'selected' : '' }}>{{$id}}</option>
-        @endforeach
-    </select>
-</div>
-
-<div class="form-group col-sm-6">
-    {!! Form::label('remarks', 'Remarks:') !!}
-    {!! Form::textarea('remarks', null, ['class'=>'form-control']) !!}
-</div>
-
-<div class="form-group col-sm-6">
-    {!! Form::label('no_inst_approaches', 'No. Inst. Approaches:') !!}
-    {!! Form::text('no_ins_approaches', 0, ['class'=>'form-control']) !!}
-</div>
-
-<div class="form-group col-sm-6">
-    {!! Form::label('no_day_landings', 'No. Day Landings:') !!}
-    {!! Form::text('no_day_landings', null, ['class'=>'form-control']) !!}
-</div>
-
-<div class="form-group col-sm-6">
-    {!! Form::label('no_night_landings', 'No. Night Landings:') !!}
-    {!! Form::text('no_night_landings', null, ['class'=>'form-control']) !!}
+    <div class="col-sm-4">
+        <div class="form-group raw">
+            {!! Form::label('no_night_landings', 'No. Night Landings:', ['class'=>'col-sm-4 col-form-label text-right']) !!}
+            <div class="col-sm-8">{!! Form::text('no_night_landings', null, ['class'=>'form-control']) !!}</div>
+        </div>
+    </div>
+    
 </div>
 
 <div class="form-group col-sm-6">

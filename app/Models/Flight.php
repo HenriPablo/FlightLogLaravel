@@ -61,8 +61,8 @@ class Flight extends Model
     public static $rules = [];
 
 
-//    public function crewAssignments(){
-//        return $this->belongsToMany('App\Models\CrewAssignment', 'crew_assignment')
-//            ->withPivot( 'id', 'flight_id', 'crewmember_id', 'crewmembertype_id' ); /*, 'crewmember_id', 'crewmembertype_id'*/
-//    }
+    public function crewAssignments(){
+        return $this->belongsToMany('App\Models\CrewAssignment', 'crew_assignment')
+            ->withPivot( 'id', 'flight_id', 'crewmember_id', 'crewmembertype_id' ); /*, 'crewmember_id', 'crewmembertype_id'*/
+    }
 }

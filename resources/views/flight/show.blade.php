@@ -9,11 +9,17 @@
     <div class="content">
         <div class="box box-primary">
             <div class="box-body">
-                <div class="row" style="padding-left: 20px">
+                <div class="container">
+
                     @include('flight.show_fields')
-                    <a href="{!! route('flight.index') !!}"
-                       class="btn btn-default">Back</a>
+
+                    <div class="row">
+                        <a href="{!! route('flight.index') !!}" class="btn btn-dark btn-default">Back</a>
+                    </div>
                 </div>
+
+
+
             </div>
         </div>
     </div>
