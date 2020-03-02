@@ -49,15 +49,13 @@
 </head>
 
 <body class="skin-blue sidebar-mini">
+{{--<h3>app.plade.php</h3>--}}
 @if (!Auth::guest())
     <div class="wrapper">
         <!-- Main Header -->
         <header class="main-header">
 
-            <!-- Logo -->
-            <a href="#" class="logo">
-                <b>InfyOm</b>
-            </a>
+
 
             <!-- Header Navbar -->
             <nav class="navbar navbar-static-top" role="navigation">
@@ -126,33 +124,28 @@
 @else
     <nav class="navbar navbar-default navbar-static-top">
         <div class="container">
-            <div class="navbar-header">
-
-                <!-- Collapsed Hamburger -->
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                        data-target="#app-navbar-collapse">
-                    <span class="sr-only">Toggle Navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-
-                <!-- Branding Image -->
-                <a class="navbar-brand" href="{!! url('/') !!}">
-                    InfyOm Generator
-                </a>
-            </div>
 
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                <!-- Left Side Of Navbar -->
-                <ul class="nav navbar-nav">
-                    <li><a href="{!! url('/home') !!}">Home</a></li>
-                </ul>
 
-                <!-- Right Side Of Navbar -->
-                <ul class="nav navbar-nav navbar-right">
+                <div class="logo-wrapper">
+                    <a href="{!! url('/home') !!}" class="minor-logo-link">
+                        <!-- Logo - Branding Image -->
+                        <img src="{{ asset('art/flight-log-icon-v3-org-blu.svg') }}" class="minor-logo">
+                    </a>
+                </div>
+
+
+                <!-- MAIN NAV -->
+                <ul class="nav navbar-nav main-nav">
+                    <li><a href="{!! url('/flight') !!}">Flight</a></li>
+                    <li><a href="{!! url('/aircraft') !!}">Airfcraft</a></li>
+                    <li><a href="{!! url('/airport') !!}">Airport</a></li>
+                    <li><a href="{!! url('/crewmember') !!}">Crewmember</a></li>
+                    <li><a href="{!! url('/crewmember_type') !!}">Crewmember Type</a></li>
+                    <li><a href="{!! url('/preferences')!!}">Preferences</a></li>
                     <!-- Authentication Links -->
                     <li><a href="{!! url('/login') !!}">Login</a></li>
+                    <li><a href="{!! url('/logout') !!}">Logout</a></li>
                     <li><a href="{!! url('/register') !!}">Register</a></li>
                 </ul>
             </div>
