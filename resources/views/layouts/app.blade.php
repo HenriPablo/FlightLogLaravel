@@ -7,10 +7,13 @@
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
     <!-- Bootstrap 3.3.7 -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+{{--    <script src="https://kit.fontawesome.com/8d7e287c54.js" crossorigin="anonymous"></script>--}}
+
 
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
@@ -27,29 +30,40 @@
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-
     <!-- START CUSTOM CSS -->
     <link rel="stylesheet" href="{{ asset('css/flight_log.css') }}">
     <!-- END START CUSTOM CSS -->
 
     @yield('css')
 
-<!-- jQuery 3.1.1 -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- jQuery 3.2.1 -->
+    <script
+        src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous"></script>
+
+{{--    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"--}}
+{{--            integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>--}}
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
     <!-- AdminLTE App -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.3/js/adminlte.min.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/icheck.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js"></script>
-
+    <script src="{!! asset('smart-menus/jquery.smartmenus.min.js') !!}"></script>
+    <script src="{!! asset('smart-menus/sm-bootstrap-4/jquery.smartmenus.bootstrap-4.min.js') !!}"></script>
+    <link href="{!! asset('smart-menus/sm-bootstrap-4/jquery.smartmenus.bootstrap-4.css') !!}"/>
+    <link href="{!! asset('smart-menus/sm-core-css.css') !!}"/>
+    <link href="{!! asset('smart-menus/sm-mint/sm-mint.css') !!}"/>
+    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
     @yield('scripts')
 </head>
 
 <body class="skin-blue sidebar-mini">
-{{--<h3>app.plade.php</h3>--}}
+
 @if (!Auth::guest())
     <div class="wrapper">
         <!-- Main Header -->
@@ -122,36 +136,40 @@
 
     </div>
 @else
-    <nav class="navbar navbar-default navbar-static-top">
-        <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light rounded mb-4">
+        <button class="navbar-toggler" type="button"
+                data-toggle="collapse" data-target="#navbarNavDropdown"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+        </button>
 
-            <div class="collapse navbar-collapse" id="app-navbar-collapse">
+        <a class="navbar-brand minor-logo-link" href="{!! url('/home') !!}">
+            <img src="{{ asset('art/flight-log-icon-v3-org-blu.svg') }}" class="minor-logo">
+        </a>
 
-                <div class="logo-wrapper">
-                    <a href="{!! url('/home') !!}" class="minor-logo-link">
-                        <!-- Logo - Branding Image -->
-                        <img src="{{ asset('art/flight-log-icon-v3-org-blu.svg') }}" class="minor-logo">
-                    </a>
-                </div>
-
-
-                <!-- MAIN NAV -->
-                <ul class="nav navbar-nav main-nav">
-                    <li><a href="{!! url('/flight') !!}">Flight</a></li>
-                    <li><a href="{!! url('/aircraft') !!}">Airfcraft</a></li>
-                    <li><a href="{!! url('/airport') !!}">Airport</a></li>
-                    <li><a href="{!! url('/crewmember') !!}">Crewmember</a></li>
-                    <li><a href="{!! url('/crewmember_type') !!}">Crewmember Type</a></li>
-                    <li><a href="{!! url('/preferences')!!}">Preferences</a></li>
-                    <!-- Authentication Links -->
-                    <li><a href="{!! url('/login') !!}">Login</a></li>
-                    <li><a href="{!! url('/logout') !!}">Logout</a></li>
-                    <li><a href="{!! url('/register') !!}">Register</a></li>
-                </ul>
-            </div>
+        <!-- MAIN NAV -->
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul id="navbarNavDropdown" class="nav navbar-nav mr-auto main-nav">
+                <li><a href="{!! url('/flight') !!}">Flight</a></li>
+                <li><a href="{!! url('/aircraft') !!}">Airfcraft</a></li>
+                <li><a href="{!! url('/airport') !!}">Airport</a></li>
+                <li><a href="{!! url('/crewmember') !!}">Crewmember</a></li>
+                <li><a href="{!! url('/crewmember_type') !!}">Crewmember Type</a></li>
+                <li><a href="{!! url('/preferences')!!}">Preferences</a></li>
+                <!-- Authentication Links -->
+                <li><a href="{!! url('/login') !!}">Login</a></li>
+                <li><a href="{!! url('/logout') !!}">Logout</a></li>
+                <li><a href="{!! url('/register') !!}">Register</a></li>
+            </ul>
         </div>
     </nav>
-
+<script>
+    // $(document).ready( function () {
+    //     $("#main-nav").smartmenus();
+    // });
+</script>
     <div id="page-content-wrapper">
         <div class="container-fluid">
             <div class="row">
