@@ -101,19 +101,57 @@ class FlightController extends Controller
 
     public function update($id, UpdateFlightRequest $request)
     {
-        //dump( $request );
-
         $flight1 = $this->flightRepository->findWithoutFail($id);
-        //dump($flight);
         if (empty($flight1)) {
             Flash::error('Flight not found');
 
             return redirect(route('flight.index'));
         }
 
-        $flight2 = $this->flightRepository->update($request->all(), $id);
-        //dump($flight2);
-        //die();
+        dump( $request->id);
+        //DB::delete( 'delete from crew_assignment where flight_id = ?;', [$request->id] );
+
+        //$keys = array_keys($request);
+        // crewmember - role pairs
+        $crewmember_role = array();
+
+        $cnt = -1;
+        $tmp_role = "";
+        $tmp_crw = "";
+
+        DB::delete( 'delete from crew_assignment where flight_id = ?;', [$request->id] );
+        foreach( $request as $r ){
+            //dump( $r );
+            foreach( $r as $key => $value){
+
+                if( (strpos( $key, 'person-select') !== false) || (strpos( $key, 'role-select') !== false)  ){
+
+                    /* set the assignment counter */
+                    $cnt = preg_split('/-/', $key);
+
+                    dump( end($cnt ));
+                    dump($key . " -> ID: " . $value);
+
+                    if( strpos( $key, 'person-select') !== false ){
+                        $tmp_crw = $value;
+                    }
+                    if( (strpos( $key, 'role-select') !== false) ){
+                        $tmp_role = $value;
+                    }
+
+                    if( $tmp_role !== "" && $tmp_crw !== "" && $cnt !== -1 ){
+                        DB::insert( 'insert into crew_assignment(flight_id, crewmembertype_id, crewmember_id ) values ( ?, ?, ? )', [$request->id, $tmp_role, $tmp_crw ]);
+                        $tmp_crw = "";
+                        $tmp_role = "";
+                        $cnt = -1;
+                    }
+                }
+            }
+        }
+
+        //DB::insert( 'insert into crew_assignment(flight_id, crewmembertype_id, crewmember_id ) values ( 98, 62, 2 )' [$request->id, ]);
+
+        die();
         Flash::success('Flight updated successfully.');
 
         return redirect(route('flight.index'));
