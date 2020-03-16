@@ -47,3 +47,5 @@ Route::get("crewmemberByIdAjax/{id}","CrewmemberController@crewmemberByIdAjax");
 /** Preferences */
 Route::resource('preferences', 'PreferencesController');
 Route::get("getPreferencesAjax","PreferencesController@getPreferencesAjax");
+
+Route::get("flightCrewMemberAssignmentsByAjax/{id}", "FlightController@flightCrewMemberAssignmentsByAjax");

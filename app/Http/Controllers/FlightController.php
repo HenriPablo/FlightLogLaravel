@@ -51,6 +51,8 @@ class FlightController extends Controller
 
         $flight = $this->flightRepository->create($input);
 
+        $this->saveFlightCrewAssignment( $request, $flight->id );
+
         Flash::success('Flight saved successfully.');
 
         return redirect(route('flight.index'));
@@ -108,50 +110,8 @@ class FlightController extends Controller
             return redirect(route('flight.index'));
         }
 
-        dump( $request->id);
-        //DB::delete( 'delete from crew_assignment where flight_id = ?;', [$request->id] );
+        $this->saveFlightCrewAssignment($request, $id);
 
-        //$keys = array_keys($request);
-        // crewmember - role pairs
-        $crewmember_role = array();
-
-        $cnt = -1;
-        $tmp_role = "";
-        $tmp_crw = "";
-
-        DB::delete( 'delete from crew_assignment where flight_id = ?;', [$request->id] );
-        foreach( $request as $r ){
-            //dump( $r );
-            foreach( $r as $key => $value){
-
-                if( (strpos( $key, 'person-select') !== false) || (strpos( $key, 'role-select') !== false)  ){
-
-                    /* set the assignment counter */
-                    $cnt = preg_split('/-/', $key);
-
-                    dump( end($cnt ));
-                    dump($key . " -> ID: " . $value);
-
-                    if( strpos( $key, 'person-select') !== false ){
-                        $tmp_crw = $value;
-                    }
-                    if( (strpos( $key, 'role-select') !== false) ){
-                        $tmp_role = $value;
-                    }
-
-                    if( $tmp_role !== "" && $tmp_crw !== "" && $cnt !== -1 ){
-                        DB::insert( 'insert into crew_assignment(flight_id, crewmembertype_id, crewmember_id ) values ( ?, ?, ? )', [$request->id, $tmp_role, $tmp_crw ]);
-                        $tmp_crw = "";
-                        $tmp_role = "";
-                        $cnt = -1;
-                    }
-                }
-            }
-        }
-
-        //DB::insert( 'insert into crew_assignment(flight_id, crewmembertype_id, crewmember_id ) values ( 98, 62, 2 )' [$request->id, ]);
-
-        die();
         Flash::success('Flight updated successfully.');
 
         return redirect(route('flight.index'));
@@ -172,6 +132,57 @@ class FlightController extends Controller
         Flash::success('Flight deleted successfully.');
 
         return redirect(route('flight.index'));
+    }
+
+    public function flightCrewMemberAssignmentsByAjax( $id ){
+
+        $flightCrewMemberAssignments = DB::select( 'select * from crew_assignment where flight_id = ?', [$id]);
+        return json_decode( $flightCrewMemberAssignments );
+    }
+
+    /**
+     * @param $request
+     * @param $id flight ID
+     */
+    private function saveFlightCrewAssignment( $request, $id ){
+
+        dump( $id);
+
+        $cnt = -1;
+        $tmp_role = "";
+        $tmp_crw = "";
+
+        DB::delete( 'delete from crew_assignment where flight_id = ?;', [$id] );
+
+        foreach( $request as $r ){
+            foreach( $r as $key => $value){
+
+                if( (strpos( $key, 'person-select') !== false) || (strpos( $key, 'role-select') !== false)  ){
+
+                    /* set the assignment counter */
+                    $cnt = preg_split('/-/', $key);
+
+                    dump( end($cnt ));
+                    dump($key . " -> ID: " . $value);
+
+                    if( strpos( $key, 'person-select') !== false ){
+                        $tmp_crw = $value;
+                    }
+                    if( (strpos( $key, 'role-select') !== false) ){
+                        $tmp_role = $value;
+                    }
+
+                    if( $tmp_role !== "" && $tmp_crw !== "" && $cnt !== -1 ){
+                        DB::insert( 'insert into crew_assignment(flight_id, crewmembertype_id, crewmember_id ) values ( ?, ?, ? )', [$id, $tmp_role, $tmp_crw ]);
+                        $tmp_crw = "";
+                        $tmp_role = "";
+                        $cnt = -1;
+                    }
+                }
+            }
+        }
+
+        die();
     }
 
 }
