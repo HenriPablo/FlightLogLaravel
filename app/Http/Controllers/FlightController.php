@@ -71,14 +71,14 @@ class FlightController extends Controller
 
         $aircraft = aircraft::pluck('aircraft_tail_number', 'id')->toArray();
 
-        $crewAssignment = DB::table('crew_assignment')->where('flight_id', $id )->get();
+       // $crewAssignment = DB::table('crew_assignment')->where('flight_id', $id )->get();
 
-        dump($crewAssignment);
+        //dump($crewAssignment);
 
         return view('flight.show')
             ->with('flight', $flight)
             ->with('aircraft', $aircraft)
-            ->with('crew_assignment',  $crewAssignment )
+            //->with('crew_assignment',  $crewAssignment )
             ;
     }
 
@@ -137,7 +137,7 @@ class FlightController extends Controller
     public function flightCrewMemberAssignmentsByAjax( $id ){
 
         $flightCrewMemberAssignments = DB::select( 'select * from crew_assignment where flight_id = ?', [$id]);
-        return json_decode( $flightCrewMemberAssignments );
+        return json_encode( $flightCrewMemberAssignments );
     }
 
     /**
