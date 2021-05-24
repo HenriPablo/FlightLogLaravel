@@ -1,60 +1,60 @@
-<style>
-    .box{
-        border-top-width:0;
-        border-left-width: 0;
-        border-bottom-width:0;
-        border-left-width: 0;
-        border-radius: 0!important;
+{{--<style>--}}
+{{--    .box{--}}
+{{--        border-top-width:0;--}}
+{{--        border-left-width: 0;--}}
+{{--        border-bottom-width:0;--}}
+{{--        border-left-width: 0;--}}
+{{--        border-radius: 0!important;--}}
 
-        padding: 0!important;
-    }
+{{--        padding: 0!important;--}}
+{{--    }--}}
 
-    .box-body{
-        padding-left:0!important;
-    }
+{{--    .box-body{--}}
+{{--        padding-left:0!important;--}}
+{{--    }--}}
 
-    section.content-header{
-        /*padding-left:0;*/
-        padding-bottom: 0!important;
-    }
+{{--    section.content-header{--}}
+{{--        /*padding-left:0;*/--}}
+{{--        padding-bottom: 0!important;--}}
+{{--    }--}}
 
-    form > div.row {
-        padding-top:1rem;
-        /*border: 1px solid red;*/
-    }
+{{--    form > div.row {--}}
+{{--        padding-top:1rem;--}}
+{{--        /*border: 1px solid red;*/--}}
+{{--    }--}}
 
-    .row{
-        margin-left:0;
-        margin-right:0;
-    }
+{{--    .row{--}}
+{{--        margin-left:0;--}}
+{{--        margin-right:0;--}}
+{{--    }--}}
 
-    .remarks-row{
-        background: #e8e8e8;
-    }
-    .remarks{
-        flex: 0 0 11.11%;
-        max-width:11.11%;
-        /*background: #8db863;*/
-        text-align: right;
-    }
+{{--    .remarks-row{--}}
+{{--        background: #e8e8e8;--}}
+{{--    }--}}
+{{--    .remarks{--}}
+{{--        flex: 0 0 11.11%;--}}
+{{--        max-width:11.11%;--}}
+{{--        /*background: #8db863;*/--}}
+{{--        text-align: right;--}}
+{{--    }--}}
 
-    .remarks-text-area
-    {
-        flex: 0 0 88.89%;
-        max-width: 88.89%;
-    }
-</style>
+{{--    .remarks-text-area--}}
+{{--    {--}}
+{{--        flex: 0 0 88.89%;--}}
+{{--        max-width: 88.89%;--}}
+{{--    }--}}
+{{--</style>--}}
 
 <div class="row">
 
-    <div class="col-sm-4">
-        <div class="form-group row">
-            {!! Form::label('id', 'ID:', ['class'=>'col-sm-4 col-form-label text-right']) !!}
-            <div class="col-sm-8">
-                {!! Form::text('id', null, ['class' => 'form-control', 'readonly']) !!}
-            </div>
-        </div>
-    </div>
+{{--    <div class="col-sm-4">--}}
+{{--        <div class="form-group row">--}}
+{{--            {!! Form::label('id', 'ID:', ['class'=>'col-sm-4 col-form-label text-right']) !!}--}}
+{{--            <div class="col-sm-8">--}}
+                {!! Form::hidden('id', null, ['class' => 'form-control', 'readonly']) !!}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
 
     <div class="col-sm-4">
         <div class="form-group row">
@@ -69,10 +69,21 @@
         <div class="form-group row">
             {!! Form::label('aircraft', 'Aircraft:',  ['class'=>'col-sm-4 col-form-label text-right']) !!}
 
+{{--            {!!--}}
+{{-- //dump($flight);--}}
+{{--//dump($aircraft);--}}
+{{--//die();--}}
+{{-- !!}--}}
+
+
             <div class="col-sm-8">
                 <select class="form-control" name="aircraft_id" required id="aircraft_id">
                     @foreach( $aircraft as $id => $cls)
+                        @if( isset($flight) )
                         <option value="{{$id}}" {{ $id  == $flight->aircraft_id  ? 'selected' : ''}}>{{ $cls }}</option>
+                        @else
+                            <option value="{{$id}}">{{ $cls }}</option>
+                        @endif
                     @endforeach
                 </select>
             </div>
@@ -89,8 +100,12 @@
             <div class="col-sm-8">
                 <select class="form-control" name="departure" required id="departure">
                     @foreach( $airport as $id => $ico_id)
-                        <option
-                            value="{{$ico_id}}" {{ $ico_id == $flight->departure ? 'selected' : '' }}>{{$id}}</option>
+
+                            @if( isset( $flight ))
+                            <option value="{{$ico_id}}" {{ $ico_id == $flight->departure ? 'selected' : '' }}>{{$id}}</option>
+                            @else
+                            <option value="{{$ico_id}}">{{$id}}</option>
+                                @endif
                     @endforeach
                 </select>
             </div>
@@ -110,8 +125,11 @@
             <div class="col-sm-8">
                 <select class="form-control" name="destination" required id="destination">
                     @foreach( $airport as $id => $ico_id)
-                        <option
-                            value="{{$ico_id}}" {{ $ico_id == $flight->destination ? 'selected' : '' }}>{{$id}}</option>
+                        @if( isset( $flight ))
+                        <option value="{{$ico_id}}" {{ $ico_id == $flight->destination ? 'selected' : '' }}>{{$id}}</option>
+                        @else
+                            <option value="{{$ico_id}}">{{$id}}</option>
+                            @endif
                     @endforeach
                 </select>
             </div>
@@ -155,7 +173,7 @@
             <div class="col-sm-8">{!! Form::text('no_night_landings', null, ['class'=>'form-control']) !!}</div>
         </div>
     </div>
-    
+
 </div>
 
 <div class="form-group col-sm-6">
@@ -200,23 +218,23 @@
 
 <div class="form-group col-sm-6">
     {!! Form::label('pilot_in_command', 'PIC') !!}
-    {!! Form::text('pilot_in_command', null, ['class'=>'form-control']) !!}
+    {!! Form::text('pilot_in_command', 0.0, ['class'=>'form-control']) !!}
 </div>
 
 <div class="form-group col-sm-6">
     {!! Form::label('second_in_command', 'SIC') !!}
-    {!! Form::text('second_in_command', null, ['class'=>'form-control']) !!}
+    {!! Form::text('second_in_command', 0.0, ['class'=>'form-control']) !!}
 </div>
 
 <div class="form-group col-sm-6">
     {!! Form::label('total_duration_of_flight', 'Total Duration of Flight') !!}
-    {!! Form::text('total_duration_of_flight', null, ['class'=>'form-control']) !!}
+    {!! Form::text('total_duration_of_flight', 0.0, ['class'=>'form-control']) !!}
 </div>
 
-<div class="form-group col-sm-6">
-    {!! Form::label('extended_flight_details', 'Extended Flight Details') !!}
-    {!! Form::textarea('extended_flight_details', null, ['class'=>'form-control']) !!}
-</div>
+{{--<div class="form-group col-sm-6">--}}
+{{--    {!! Form::label('extended_flight_details', 'Extended Flight Details') !!}--}}
+{{--    {!! Form::textarea('extended_flight_details', 0.0, ['class'=>'form-control']) !!}--}}
+{{--</div>--}}
 
 
 

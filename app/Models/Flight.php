@@ -12,8 +12,6 @@ use App\Models\CrewAssignment;
 
 class Flight extends Model
 {
-    public $table = 'flight';
-    public $timestamps = false;
     /**
      * list of columns from FLIGHT table
     id
@@ -49,17 +47,51 @@ class Flight extends Model
      */
 
     public $fillable = [
+        'date',
+        'aircraft_id',
         'departure',
+        'route',
         'destination',
-        'aircraft_id'
+        'remarks',
+        'no_inst_approaches',
+        'no_day_landings',
+        'no_night_landings',
+        'as_flight_instructor',
+        'cross_country',
+        'daytime',
+        'nighttime',
+        'actual_instrument',
+        'simulated_instrument',
+        'ground_trainer',
+        'dual_received',
+        'pilot_in_command',
+        'second_in_command',
+        'total_duration_of_flight'
+        // Implement the full works for table 'flight_extended_details'
+        // and do it as dynamic fileds - mostly
+        // so that trackable attributes can be added as needed
+        // and can be customized to suite the specific flying bun is doing
+//        'extended_flight_details'
+
     ];
+    public $table = 'flight';
+
+    public $timestamps = false;
     protected $casts = [
-//        'departure'=>'string'
-    'aircraft_id'=>'int'
+    'departure'=>'string',
+    'aircraft_id'=>'int',
+    'pilot_in_command' => 'double'
     ];
 
     public static $rules = [];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     **/
+    public function aircraft()
+    {
+        return $this->belongsTo(\App\Models\Aircraft::class);
+    }
 
     public function crewAssignments(){
         return $this->belongsToMany('App\Models\CrewAssignment', 'crew_assignment')

@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property \Illuminate\Database\Eloquent\Collection pilotPilotRoleXref
  * @property \Illuminate\Database\Eloquent\Collection flightPilotXref
  * @property \Illuminate\Database\Eloquent\Collection Flight
+ * @property bigInteger aircraft_id
  * @property bigInteger aircraft_category
  * @property bigInteger aircraft_class
  * @property string aircraft_tail_number
@@ -29,7 +30,7 @@ class aircraft extends Model
 
     public $table = 'aircraft';
     public $timestamps = false;
-    
+
     //const CREATED_AT = 'created_at';
     //const UPDATED_AT = 'updated_at';
 
@@ -38,6 +39,7 @@ class aircraft extends Model
 
 
     public $fillable = [
+        'aircraft_id',
         'aircraft_category',
         'aircraft_class',
         'aircraft_tail_number',
@@ -53,6 +55,7 @@ class aircraft extends Model
      * @var array
      */
     protected $casts = [
+        'aircraft_id' => 'int',
         'aircraft_tail_number' => 'string',
         'aircraft_type' => 'string',
         'complex' => 'boolean',
@@ -66,7 +69,7 @@ class aircraft extends Model
      * @var array
      */
     public static $rules = [
-        
+
     ];
 
     /**

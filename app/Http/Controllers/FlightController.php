@@ -9,6 +9,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateFlightRequest;
 use App\Http\Requests\UpdateFlightRequest;
+use App\Repositories\aircraftRepository;
 use App\Repositories\FlightRepository;
 use Illuminate\Http\Request;
 use App\Models\aircraft;
@@ -22,41 +23,41 @@ use function Psy\debug;
 
 class FlightController extends Controller
 {
-
     /** @var FlightRepository  */
     private $flightRepository;
+    private $aircraftRepository;
 
-    public function __construct( FlightRepository $flightRepository)
+    public function __construct( FlightRepository $flightRepository, aircraftRepository $aircraftRepo)
     {
         $this->flightRepository = $flightRepository;
+        $this->aircraftRepository = $aircraftRepo;
     }
 
     public function index( Request $request)
     {
         $this->flightRepository->pushCriteria( new RequestCriteria($request));
         $flights = $this->flightRepository->all();
+
         return view( 'flight.index')
             ->with('flights', $flights);
     }
 
     public function create()
     {
-        return view('flight.create');
+        $aircraft = aircraft::pluck('aircraft_tail_number', 'id', 'nickname')->toArray();
+        $airport = Airport::pluck('id', 'ico_identifier', 'name')->toArray();
+        return view('flight.create')
+            ->with('aircraft', $aircraft)
+            ->with('airport', $airport);
     }
 
     public function store(CreateFlightRequest $request)
     {
-
         $input = $request->all();
-
         $flight = $this->flightRepository->create($input);
-
         $this->saveFlightCrewAssignment( $request, $flight->id );
-
         Flash::success('Flight saved successfully.');
-
         return redirect(route('flight.index'));
-
     }
 
     public function show($id)
@@ -65,21 +66,12 @@ class FlightController extends Controller
 
         if (empty($flight)) {
             Flash::error('Flight not found');
-
             return redirect(route('flight.index'));
         }
-
-        $aircraft = aircraft::pluck('aircraft_tail_number', 'id')->toArray();
-
-       // $crewAssignment = DB::table('crew_assignment')->where('flight_id', $id )->get();
-
-        //dump($crewAssignment);
-
+        $aircraft = aircraft::pluck('aircraft_tail_number', 'id', 'nickname')->toArray();
         return view('flight.show')
             ->with('flight', $flight)
-            ->with('aircraft', $aircraft)
-            //->with('crew_assignment',  $crewAssignment )
-            ;
+            ->with('aircraft', $aircraft);
     }
 
     public function edit($id)
@@ -91,10 +83,8 @@ class FlightController extends Controller
 
             return redirect(route('flight.index'));
         }
-
         $aircraft = aircraft::pluck('aircraft_tail_number', 'id', 'nickname')->toArray();
         $airport = Airport::pluck('id', 'ico_identifier', 'name')->toArray();
-        //var_dump($aircraft);
         return view('flight.edit')
             ->with('flight', $flight)
             ->with('aircraft', $aircraft)
@@ -146,7 +136,7 @@ class FlightController extends Controller
      */
     private function saveFlightCrewAssignment( $request, $id ){
 
-        dump( $id);
+//        dump( $id);
 
         $cnt = -1;
         $tmp_role = "";
@@ -162,8 +152,8 @@ class FlightController extends Controller
                     /* set the assignment counter */
                     $cnt = preg_split('/-/', $key);
 
-                    dump( end($cnt ));
-                    dump($key . " -> ID: " . $value);
+//                    dump( end($cnt ));
+//                    dump($key . " -> ID: " . $value);
 
                     if( strpos( $key, 'person-select') !== false ){
                         $tmp_crw = $value;
@@ -181,8 +171,5 @@ class FlightController extends Controller
                 }
             }
         }
-
-        die();
     }
-
 }
