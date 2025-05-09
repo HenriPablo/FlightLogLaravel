@@ -24,9 +24,9 @@
     },
     "dependencies": {
         "core-js": "^3.2.1",
-        "react-bootstrap": "^1.0.0-beta.12",
+        "react-bootstrap": "^2.0.0",
         "react-html-parser": "^2.0.2",
-        "react-redux": "^7.1.1",
+        "react-redux": "^9.0.0",
         "react-scripts": "^2.1.8",
         "redux": "^4.0.4",
         "redux-devtools-extension": "^2.13.8",
